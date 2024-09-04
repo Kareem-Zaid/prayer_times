@@ -20,9 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('مواقيت الصلاة'),
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(SettingsScreen.routeName);
-            },
+            onPressed: () =>
+                Navigator.of(context).pushNamed(SettingsScreen.routeName),
             icon: const Icon(Icons.settings),
           )
         ],

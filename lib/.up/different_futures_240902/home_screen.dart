@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:prayer_times/next_prayer_widget.dart';
+// ignore: unused_import
 import 'package:prayer_times/prayer_day_future_builder.dart';
 import 'package:prayer_times/settings_screen.dart';
 
@@ -20,14 +22,19 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('مواقيت الصلاة'),
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(SettingsScreen.routeName);
-            },
+            onPressed: () =>
+                Navigator.of(context).pushNamed(SettingsScreen.routeName),
             icon: const Icon(Icons.settings),
           )
         ],
       ),
-      body: const PrayerDayFutureBuilder(),
+      body: const Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          NextPrayer(),
+          PrayerDayFutureBuilder(),
+        ],
+      ),
       floatingActionButton: Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: [

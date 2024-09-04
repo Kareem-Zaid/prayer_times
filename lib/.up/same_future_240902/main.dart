@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
 
 // v1.0.0: Mesba7a; with reset feature, and related icon | Date only, without time {240828}
 // v1.0.0: DatePicker and assigning arguments to variables {240829}
-// v1.0.0: Next Prayer Widget | after hh mm {240903}
+// v1.0.0: Next Prayer Widget (no null | widget doesn't update until hot reload | should be called at the beginng?) | after hh mm
 // v1.0.0: Add city, country, and method in settings, and add their pickers
 // v1.0.0: Add Time Format (24h/12h) in settings
 // v1.0.0: Add monthly and yearly tabs

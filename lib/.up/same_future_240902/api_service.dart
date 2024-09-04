@@ -36,22 +36,14 @@ class ApiService {
     }
   }
 
-  static String formatDate(DateTime date) {
-    String day = date.day.toString().padLeft(2, '0');
-    String month = date.month.toString().padLeft(2, '0');
-    String year = date.year.toString();
-    return '$day-$month-$year';
-  }
-
   static Future<PrayerDay> getPrayerDay({
-    required DateTime date,
+    required String dateDDMMYYYY,
     required String city,
     required String country,
     int? method,
   }) async {
     const String baseUrl = 'https://api.aladhan.com/v1';
     Geocoding geocoding = await getCoordinatesByAddress(city, country);
-    String dateDDMMYYYY = formatDate(date);
     double lat = geocoding.results.first.geometry.lat; // WOW!
     double lng = geocoding.results.first.geometry.lng; // lssa mostagadd b2a :D
     String methodP = method != null ? '&method=$method' : '';

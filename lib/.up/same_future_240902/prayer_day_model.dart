@@ -57,9 +57,7 @@ class Prayers {
   }
 
   // Method to return a list of all prayers
-  List<Prayer> get prayerList {
-    return [fajr, sunrise, dhuhr, asr, maghrib, isha];
-  }
+  List<Prayer> get prayerList => [fajr, sunrise, dhuhr, asr, maghrib, isha];
 
   // No need for 'toJson' method as the API endpoints offer GET requests only
 }

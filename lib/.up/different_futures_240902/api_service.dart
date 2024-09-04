@@ -44,14 +44,14 @@ class ApiService {
   }
 
   static Future<PrayerDay> getPrayerDay({
-    required DateTime date,
+    required DateTime dateTime,
     required String city,
     required String country,
     int? method,
   }) async {
     const String baseUrl = 'https://api.aladhan.com/v1';
     Geocoding geocoding = await getCoordinatesByAddress(city, country);
-    String dateDDMMYYYY = formatDate(date);
+    String dateDDMMYYYY = formatDate(dateTime);
     double lat = geocoding.results.first.geometry.lat; // WOW!
     double lng = geocoding.results.first.geometry.lng; // lssa mostagadd b2a :D
     String methodP = method != null ? '&method=$method' : '';
