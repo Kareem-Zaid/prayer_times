@@ -4,11 +4,11 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:prayer_times/models/geocoding.dart';
 import 'package:prayer_times/models/prayer_day.dart';
-import 'package:uni_country_city_picker/uni_country_city_picker.dart';
 
 class ApiService {
   // Forward Geocoding API request
-  static Future<Geocoding> forGeocoding(String city, String country) async {
+  static Future<Geocoding> getCoordinatesByAddress(
+      String city, String country) async {
     await dotenv.load(); // Loads the default .env file from the root directory
     String apiKey = dotenv.env['API_KEY']!;
     final uri = Uri.parse(
@@ -43,16 +43,18 @@ class ApiService {
     return '$day-$month-$year';
   }
 
-  static Future<PrayerDay> getPrayerDay(
-      {required DateTime date, required ApiPars apiPars}) async {
+  static Future<PrayerDay> getPrayerDay({
+    required DateTime date,
+    required String city,
+    required String country,
+    int? method,
+  }) async {
     const String baseUrl = 'https://api.aladhan.com/v1';
-    final String countryEn = apiPars.country?.nameEn ?? 'Saudi Arabia';
-    final String cityEn = apiPars.city?.nameEn ?? 'Jazan';
-    final Geocoding geocoding = await forGeocoding(cityEn, countryEn);
-    final String dateDDMMYYYY = formatDate(date);
-    final double lat = geocoding.results.first.geometry.lat; // WOW!
-    final lng = geocoding.results.first.geometry.lng; // lssa mostagadd b2a :D
-    final methodP = apiPars.method != null ? '&method=${apiPars.method}' : '';
+    Geocoding geocoding = await getCoordinatesByAddress(city, country);
+    String dateDDMMYYYY = formatDate(date);
+    double lat = geocoding.results.first.geometry.lat; // WOW!
+    double lng = geocoding.results.first.geometry.lng; // lssa mostagadd b2a :D
+    String methodP = method != null ? '&method=$method' : '';
     final url = Uri.parse(
         '$baseUrl/timings/$dateDDMMYYYY?latitude=$lat&longitude=$lng$methodP');
     // url.replace(queryParameters: {}); // ... si tu veux add query parameters separately
@@ -79,30 +81,4 @@ class ApiService {
       rethrow;
     }
   }
-}
-
-class ApiPars {
-  Country? country;
-  City? city;
-  int? method;
-
-  ApiPars({this.country, this.city, this.method});
-
-  bool hasChanged(ApiPars other) {
-    return country != other.country ||
-        city != other.city ||
-        method != other.method;
-  }
-
-  // @override
-  // bool operator ==(Object other) =>
-  //     identical(this, other) ||
-  //     other is ApiPars &&
-  //         runtimeType == other.runtimeType &&
-  //         city == other.city &&
-  //         country == other.country &&
-  //         method == other.method;
-
-  // @override
-  // int get hashCode => city.hashCode ^ country.hashCode ^ method.hashCode;
 }

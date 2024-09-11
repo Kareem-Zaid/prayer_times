@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prayer_times/prayer_day_model.dart';
+import 'package:prayer_times/models/prayer_day.dart';
 import 'package:prayer_times/utils.dart';
 
 class NextPrayer extends StatefulWidget {
@@ -26,6 +26,9 @@ class _NextPrayerState extends State<NextPrayer> {
   }
 
   String formatEtaText(Duration eta) {
+    // Add 1 minute to handle rounding errors
+    // eta = eta + const Duration(minutes: 1); // Can be shortened like below:
+    if (eta.inSeconds.remainder(60) > 0) eta += const Duration(minutes: 1);
     final int hours = eta.inHours;
     final int minutes = eta.inMinutes.remainder(60);
     // final int minutes = eta.inMinutes % 60; // Same as using "inMinutes.remainder(60)"
