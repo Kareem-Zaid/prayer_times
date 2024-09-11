@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart'; // for "debugPrint"
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:prayer_times/geocoding_model.dart';
-import 'package:prayer_times/prayer_day_model.dart';
+import 'package:prayer_times/models/geocoding.dart';
+import 'package:prayer_times/models/prayer_day.dart';
 
 class ApiService {
   // Forward Geocoding API request
@@ -13,7 +13,7 @@ class ApiService {
     String apiKey = dotenv.env['API_KEY']!;
     final uri = Uri.parse(
         'https://api.opencagedata.com/geocode/v1/json?key=$apiKey&q=$city%2C+$country');
-
+    debugPrint('Geocoding API uri: $uri');
     try {
       final response = await http.get(uri);
 
@@ -64,8 +64,9 @@ class ApiService {
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseBody = jsonDecode(response.body);
         if (responseBody['code'] == 200) {
+          // debugPrint('responseBody: ${responseBody['data']['date']['gregorian']}');
           debugPrint(
-              'responseBody: ${responseBody['data']['date']['gregorian'].toString()}');
+              'API GET return (fajrTime): ${PrayerDay.fromJson(responseBody).data.prayers.prayerList.firstOrNull?.time}');
           return PrayerDay.fromJson(responseBody);
         } else {
           throw Exception(

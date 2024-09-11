@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:prayer_times/home_screen.dart';
+import 'package:prayer_times/screens/home_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:prayer_times/settings_screen.dart';
+// import 'package:prayer_times/screens/settings_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
       initialRoute: HomeScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) => const HomeScreen(),
-        SettingsScreen.routeName: (context) => const SettingsScreen(),
+        // SettingsScreen.routeName: (context) => const SettingsScreen(),
       },
     );
   }
@@ -56,9 +56,12 @@ class MyApp extends StatelessWidget {
 // v1.0.0: Mesba7a; with reset feature, and related icon | Date only, without time {240828}
 // v1.0.0: DatePicker and assigning arguments to variables {240829}
 // v1.0.0: Next Prayer Widget | after hh mm {240903}
-// v1.0.0: Add city, country, and method in settings, and add their pickers
+// v1.0.0: Add city and country pickers/UI & parameters/logic in settings {240910} (Reduce variables if possible)
+// v1.0.0: Add calculation method picker & parameters in settings
 // v1.0.0: Add Time Format (24h/12h) in settings
 // v1.0.0: Add monthly and yearly tabs
 // v1.0.0: Add local notifications
-// v1.1.0: Try geocoding package instead of the API endpoint (Copy files in ".up" before proceeding)
+// v1.1.0: Try geocoding package instead of the API endpoint (Copy files in a folder in ".up" before proceeding)
+// v1.1.0: Add automatic refresh to next prayer every while (e.g. 30 mins, 1 min)
 // v1.1.0: English localization
+// v1.1.0: Enable searching in English in Arabic cities and countries names

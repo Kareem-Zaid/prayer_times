@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:prayer_times/prayer_day_model.dart';
+import 'package:prayer_times/models/prayer_day.dart';
 
-class PrayerDayListView extends StatelessWidget {
-  const PrayerDayListView({super.key, required this.prayers});
+class PrayerListView extends StatelessWidget {
+  const PrayerListView({super.key, required this.prayers});
 
   final Prayers prayers;
 

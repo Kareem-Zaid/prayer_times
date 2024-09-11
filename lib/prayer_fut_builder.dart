@@ -1,25 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:prayer_times/api_service.dart';
-import 'package:prayer_times/prayer_day_model.dart';
-import 'package:prayer_times/prayer_day_list_view.dart';
+import 'package:prayer_times/models/prayer_day.dart';
+import 'package:prayer_times/prayer_list_view.dart';
 import 'package:prayer_times/utils.dart';
-import 'next_prayer_widget.dart';
+import 'package:prayer_times/next_prayer.dart';
 
-class PrayerDayFutureBuilder extends StatefulWidget {
-  const PrayerDayFutureBuilder({super.key});
+class PrayerFutBuilder extends StatefulWidget {
+  const PrayerFutBuilder(
+      {super.key,
+      required this.city,
+      required this.country,
+      required this.method});
+  final String city, country;
+  final int? method;
 
   @override
-  State<PrayerDayFutureBuilder> createState() => _PrayerDayFutureBuilderState();
+  State<PrayerFutBuilder> createState() => _PrayerFutBuilderState();
 }
 
-class _PrayerDayFutureBuilderState extends State<PrayerDayFutureBuilder> {
+class _PrayerFutBuilderState extends State<PrayerFutBuilder> {
   late Future<PrayerDay> prayerFuture;
   DateTime date = Utils.now;
   Prayer? nextPrayer;
 
   void assignPrayerDay() {
     prayerFuture = ApiService.getPrayerDay(
-        date: date, city: 'Jazan', country: 'Saudi Arabia');
+      date: date,
+      // city: widget.city ?? 'Makkah',
+      // the "??" operator can check for null, but not for empty strings
+      // city: widget.city != '' ? widget.city : 'Makkah',
+      // country: widget.country.isNotEmpty ? widget.country : 'Saudi Arabia',
+      city: widget.city,
+      country: widget.country,
+      method: widget.method,
+    );
+    // setState(() {});
+    debugPrint('City inside API call: ${widget.city}');
+    debugPrint('Country inside API call: ${widget.country}');
+  }
+
+  @override
+  void didUpdateWidget(covariant PrayerFutBuilder oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.city != oldWidget.city ||
+        widget.country != oldWidget.country ||
+        widget.method != oldWidget.method) {
+      assignPrayerDay();
+    }
   }
 
   @override
@@ -90,7 +117,7 @@ class _PrayerDayFutureBuilderState extends State<PrayerDayFutureBuilder> {
                   ),
                 ),
                 const SizedBox(height: 30),
-                PrayerDayListView(prayers: prayers),
+                PrayerListView(prayers: prayers),
               ],
             ),
           );

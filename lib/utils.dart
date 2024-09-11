@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:prayer_times/prayer_day_model.dart';
+// import 'package:flutter/material.dart';
+import 'package:prayer_times/models/prayer_day.dart';
 
 class Utils {
   // static final DateTime now = DateTime.now(); // Doesn't update time on rebuild (hot reload)
@@ -50,7 +50,7 @@ class Utils {
     if (!prayerAssigned && (now.isAfter(ishaTime) || now.isBefore(fajrTime))) {
       nextPrayer = fivePrayers.first;
     }
-    debugPrint('Next prayer: ${nextPrayer?.name}');
+    // debugPrint('Next prayer: ${nextPrayer?.name}');
     return nextPrayer!;
   }
 
