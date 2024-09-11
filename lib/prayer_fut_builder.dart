@@ -42,6 +42,9 @@ class _PrayerFutBuilderState extends State<PrayerFutBuilder> {
   @override
   void didUpdateWidget(covariant PrayerFutBuilder oldWidget) {
     super.didUpdateWidget(oldWidget);
+    debugPrint('Old-widget City: ${oldWidget.city}');
+    debugPrint('Current-widget City: ${widget.city}');
+
     if (widget.city != oldWidget.city ||
         widget.country != oldWidget.country ||
         widget.method != oldWidget.method) {
