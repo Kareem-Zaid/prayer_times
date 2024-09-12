@@ -4,10 +4,19 @@ import 'package:prayer_times/models/prayer_day.dart';
 import 'package:prayer_times/prayer_list_view.dart';
 import 'package:prayer_times/utils.dart';
 import 'package:prayer_times/next_prayer.dart';
+import 'package:uni_country_city_picker/uni_country_city_picker.dart';
 
 class PrayerFutBuilder extends StatefulWidget {
-  const PrayerFutBuilder({super.key, required this.apiPars});
-  final ApiPars apiPars;
+  const PrayerFutBuilder({
+    super.key,
+    required this.country,
+    required this.city,
+    required this.method,
+  });
+  // final ApiPars apiPars;
+  final Country? country;
+  final City? city;
+  final int? method;
 
   @override
   State<PrayerFutBuilder> createState() => _PrayerFutBuilderState();
@@ -19,17 +28,29 @@ class _PrayerFutBuilderState extends State<PrayerFutBuilder> {
   Prayer? nextPrayer;
 
   void assignPrayerDay() {
-    prayerFuture = ApiService.getPrayerDay(date: date, apiPars: widget.apiPars);
+    prayerFuture = ApiService.getPrayerDay(
+      date: date,
+      apiPars: ApiPars(
+        country: widget.country,
+        city: widget.city,
+        method: widget.method,
+      ),
+    );
+    // debugPrint('City inside API call: ${widget.apiPars.city}');
   }
 
   @override
   void didUpdateWidget(covariant PrayerFutBuilder oldWidget) {
     super.didUpdateWidget(oldWidget);
-    debugPrint('FutBuilder old-widget City: ${oldWidget.apiPars.city?.nameEn}');
-    debugPrint('FutB current-widget City: ${widget.apiPars.city?.nameEn}');
-    if (widget.apiPars.city != oldWidget.apiPars.city ||
-        widget.apiPars.country != oldWidget.apiPars.country ||
-        widget.apiPars.method != oldWidget.apiPars.method) assignPrayerDay();
+    debugPrint('FutBuilder old-widget City: ${oldWidget.city?.nameEn}');
+    debugPrint('FutB current-widget City: ${widget.city?.nameEn}');
+
+    if (widget.country != oldWidget.country ||
+        widget.city != oldWidget.city ||
+        widget.method != oldWidget.method) {
+      assignPrayerDay();
+    }
+    // if (widget.apiPars != oldWidget.apiPars) assignPrayerDay();
   }
 
   @override

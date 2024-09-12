@@ -25,14 +25,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void setCountries() async {
     setState(() => isLoading = true);
     countries = await CountryCityUtils.initCountriesAndCities();
+    // setState(() {});
     setState(() => isLoading = false);
-  }
-
-  List<Method> methodList = [];
-  void getMethods() {
-    methodList = Method.methods.entries
-        .map((x) => Method(index: x.key, name: x.value))
-        .toList();
   }
 
   ApiPars pickedApiPars = ApiPars();
@@ -43,34 +37,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void initState() {
     super.initState();
     setCountries();
-    getMethods();
     pickedApiPars = widget.passedApiPars;
   }
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle? fontStyle = Theme.of(context).textTheme.labelLarge;
-    var /* double */ kWidth = MediaQuery.of(context).size.width;
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop) return;
-        if (pickedApiPars.city == null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('قم باختيار الدولة والمدينة أولا')),
-          );
-        } else {
-          debugPrint('Picked city just b4 pop: ${pickedApiPars.city?.nameEn}');
-          widget.passApiArgs(pickedApiPars);
-          Navigator.of(context).pop();
-        }
+        debugPrint('Picked city just b4 pop: ${pickedApiPars.city?.nameEn}');
+        // debugPrint('~ picked country ~: ${pickedApiPars?.country?.nameEn}');
+        // debugPrint('picked method: $pickedMethod');
+        widget.passApiArgs(pickedApiPars);
+        Navigator.of(context).pop();
       },
       child: Scaffold(
         appBar: AppBar(title: const Text('الإعدادات')),
         body: isLoading
             ? const LinearProgressIndicator()
             : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   buildPickerButton(
                     label: countryLabel,
@@ -94,47 +80,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        const Text(
-                          'طريقة \n الحساب',
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(width: kWidth * .03),
+                        const Text('طريقة \n الحساب',
+                            textAlign: TextAlign.center),
                         SizedBox(
-                          width: kWidth * .77,
+                          width: MediaQuery.of(context).size.width * .5,
                           child: DropdownButton(
-                            padding: const EdgeInsets.all(8.0),
-                            borderRadius: BorderRadius.circular(8.000),
-                            isExpanded: true, // Pivotal
-                            hint: const Center(
-                                child: Text('اختر طريقة الحساب...')),
-                            value: pickedApiPars.method,
-                            items: [
-                              DropdownMenuItem<Method>(
-                                  value: Method(index: -1, name: 'الافتراضي'),
-                                  child: Center(
-                                      child: Text(
-                                    'الافتراضي',
-                                    textAlign: TextAlign.center,
-                                    style: fontStyle,
-                                  ))),
-                              ...methodList.map((method) {
-                                return DropdownMenuItem(
-                                    value: method,
-                                    child: Center(
-                                        child: Text(
-                                      method.name,
-                                      textAlign: TextAlign.center,
-                                      style: fontStyle,
-                                    )));
-                              }) /* .toList() */
-                            ],
-                            onChanged: (newMethod) {
-                              // newMethod as Method;
-                              debugPrint('Picked method: ${newMethod?.name}');
-                              setState(() => pickedApiPars.method = newMethod);
-                            },
+                            items: const [],
+                            onChanged: (value) {},
                           ),
                         ),
                       ],
@@ -157,10 +111,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
-        // mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(label), // [1]
-          SizedBox(width: MediaQuery.of(context).size.width * .03),
           SizedBox(
             width: MediaQuery.of(context).size.width * .5,
             child: ElevatedButton.icon(

@@ -20,6 +20,7 @@ class _PrayerFutBuilderState extends State<PrayerFutBuilder> {
 
   void assignPrayerDay() {
     prayerFuture = ApiService.getPrayerDay(date: date, apiPars: widget.apiPars);
+    debugPrint('City inside API call: ${widget.apiPars.city}');
   }
 
   @override
@@ -27,9 +28,13 @@ class _PrayerFutBuilderState extends State<PrayerFutBuilder> {
     super.didUpdateWidget(oldWidget);
     debugPrint('FutBuilder old-widget City: ${oldWidget.apiPars.city?.nameEn}');
     debugPrint('FutB current-widget City: ${widget.apiPars.city?.nameEn}');
-    if (widget.apiPars.city != oldWidget.apiPars.city ||
-        widget.apiPars.country != oldWidget.apiPars.country ||
-        widget.apiPars.method != oldWidget.apiPars.method) assignPrayerDay();
+
+    // if (widget.apiPars.country != oldWidget.apiPars.country ||
+    //     widget.apiPars.city != oldWidget.apiPars.city ||
+    //     widget.apiPars.method != oldWidget.apiPars.method) {
+    //   assignPrayerDay();
+    // }
+    if (widget.apiPars != oldWidget.apiPars) assignPrayerDay();
   }
 
   @override

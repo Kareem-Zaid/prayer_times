@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void passApiArgs(ApiPars apiPars) {
     setState(() => currentApiPars = apiPars);
     debugPrint(
-        'passApiArgs in HomeScreen: ${apiPars.country?.name}, ${apiPars.city?.name}, ${apiPars.method?.name}');
+        'passApiArgs in HomeScreen: ${apiPars.city?.name}, ${apiPars.country?.name}, ${apiPars.method}');
   }
 
 // @override
@@ -47,13 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      body: PrayerFutBuilder(
-        apiPars: ApiPars(
-          country: currentApiPars.country,
-          city: currentApiPars.city,
-          method: currentApiPars.method,
-        ),
-      ),
+      body: PrayerFutBuilder(apiPars: currentApiPars),
       floatingActionButton: Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: [

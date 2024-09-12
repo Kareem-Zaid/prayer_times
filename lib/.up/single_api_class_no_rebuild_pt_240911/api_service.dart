@@ -52,14 +52,10 @@ class ApiService {
     final String dateDDMMYYYY = formatDate(date);
     final double lat = geocoding.results.first.geometry.lat; // WOW!
     final lng = geocoding.results.first.geometry.lng; // lssa mostagadd b2a :D
-    final String methodStr =
-        apiPars.method?.index != null && apiPars.method?.index != -1
-            ? '&method=${apiPars.method?.index}'
-            : '';
+    final methodP = apiPars.method != null ? '&method=${apiPars.method}' : '';
     final url = Uri.parse(
-        '$baseUrl/timings/$dateDDMMYYYY?latitude=$lat&longitude=$lng$methodStr');
+        '$baseUrl/timings/$dateDDMMYYYY?latitude=$lat&longitude=$lng$methodP');
     // url.replace(queryParameters: {}); // ... si tu veux add query parameters separately
-    debugPrint('getPrayerDay API uri: $url');
     try {
       final response = await http.get(url);
 
@@ -88,47 +84,39 @@ class ApiService {
 class ApiPars {
   Country? country;
   City? city;
-  Method? method;
+  int? method;
 
   ApiPars({this.country, this.city, this.method});
-}
 
-class Method {
-  int index;
-  String name;
+  // bool hasChanged(ApiPars other) {
+  //   return country != other.country ||
+  //       city != other.city ||
+  //       method != other.method;
+  // }
 
-  Method({required this.index, required this.name});
+  // @override
+  // bool operator ==(Object other) =>
+  //     identical(this, other) ||
+  //     other is ApiPars &&
+  //         runtimeType == other.runtimeType &&
+  //         city == other.city &&
+  //         country == other.country &&
+  //         method == other.method;
 
-  static Map<int, String> get methods => {
-        0: 'Jafari / Shia Ithna-Ashari',
-        1: 'University of Islamic Sciences, Karachi',
-        2: 'Islamic Society of North America',
-        3: 'Muslim World League',
-        4: 'Umm Al-Qura University, Makkah',
-        5: 'Egyptian General Authority of Survey',
-        7: 'Institute of Geophysics, University of Tehran',
-        8: 'Gulf Region',
-        9: 'Kuwait',
-        10: 'Qatar',
-        11: 'Majlis Ugama Islam Singapura, Singapore',
-        12: 'Union Organization islamic de France',
-        13: 'Diyanet İşleri Başkanlığı, Turkey',
-        14: 'Spiritual Administration of Muslims of Russia',
-        15: 'Moonsighting Committee Worldwide',
-        16: 'Dubai (experimental)',
-        17: 'Jabatan Kemajuan Islam Malaysia (JAKIM)',
-        18: 'Tunisia',
-        19: 'Algeria',
-        20: 'KEMENAG - Kementerian Agama Republik Indonesia',
-        21: 'Morocco',
-        22: 'Comunidade Islamica de Lisboa',
-        23: 'Ministry of Awqaf, Islamic Affairs and Holy Places, Jordan',
-      };
+  // @override
+  // int get hashCode => city.hashCode ^ country.hashCode ^ method.hashCode;
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) || (other is Method && other.index == index);
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ApiPars) return false;
+    return other.country == country &&
+        other.city == city &&
+        other.method == method;
+  }
 
   @override
-  int get hashCode => index.hashCode;
+  int get hashCode {
+    return country.hashCode ^ city.hashCode ^ method.hashCode;
+  }
 }

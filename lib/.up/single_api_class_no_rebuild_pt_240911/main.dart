@@ -57,8 +57,7 @@ class MyApp extends StatelessWidget {
 // v1.0.0: DatePicker and assigning arguments to variables {240829}
 // v1.0.0: Next Prayer Widget | after hh mm {240903}
 // v1.0.0: Add city and country pickers/UI & parameters/logic in settings {240910} (Reduce variables if possible)
-// v1.0.0: Do some encapsulation and abstaction {240911}
-// v1.0.0: Add calculation method class in api_serivce.dart, and picker & parameters in settings {240912}
+// v1.0.0: Do some encapsulation and abstaction | Add calculation method picker & parameters in settings
 // v1.0.0: Add Time Format (24h/12h) in settings
 // v1.0.0: Add monthly and yearly tabs
 // v1.0.0: Add local notifications
@@ -66,4 +65,4 @@ class MyApp extends StatelessWidget {
 // v1.1.0: Add automatic refresh to next prayer every while (e.g. 30 mins, 1 min)
 // v1.1.0: English localization
 // v1.1.0: Enable searching in English in Arabic cities and countries names
-// v1.1.0: Add a splash screen, then ask for location before proceeding to home (InitialScreen extends SettingsScreen, and pass ApiPars class to HomeScreen currentApiPars [currentApiPars = widget.initApiPars])
+// v1.1.0: Add a splash screen, then ask for location before proceeding to home
