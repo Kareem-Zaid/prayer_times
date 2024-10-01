@@ -1,36 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:prayer_times/api_service.dart';
+import 'package:prayer_times/models/api_pars.dart';
+import 'package:prayer_times/services/api_service.dart';
 import 'package:prayer_times/models/prayer_day.dart';
-import 'package:prayer_times/prayer_list_view.dart';
-import 'package:prayer_times/utils.dart';
-import 'package:prayer_times/next_prayer.dart';
+import 'package:prayer_times/utils/string_extensions.dart';
+import 'package:prayer_times/widgets/prayer_list_view.dart';
+import 'package:prayer_times/services/next_prayer_service.dart';
+import 'package:prayer_times/widgets/next_prayer.dart';
 
-class PrayerFutBuilder extends StatefulWidget {
-  const PrayerFutBuilder({super.key, required this.apiPars});
+late Future<PrayerDay> dayFuture;
+
+class DailyScreen extends StatefulWidget {
+  const DailyScreen({super.key, required this.apiPars});
   final ApiPars apiPars;
 
   @override
-  State<PrayerFutBuilder> createState() => _PrayerFutBuilderState();
+  State<DailyScreen> createState() => _DailyScreenState();
 }
 
-class _PrayerFutBuilderState extends State<PrayerFutBuilder> {
-  late Future<PrayerDay> prayerFuture;
-  DateTime date = Utils.now;
+class _DailyScreenState extends State<DailyScreen> {
+  // late Future<PrayerDay> dayFuture;
+  DateTime date = NextPrayerService.now;
   Prayer? nextPrayer;
 
   void assignPrayerDay() {
-    prayerFuture = ApiService.getPrayerDay(date: date, apiPars: widget.apiPars);
+    dayFuture = ApiService.getPrayerDay(date: date, apiPars: widget.apiPars);
   }
 
-  @override
-  void didUpdateWidget(covariant PrayerFutBuilder oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    debugPrint('FutBuilder old-widget City: ${oldWidget.apiPars.city?.nameEn}');
-    debugPrint('FutB current-widget City: ${widget.apiPars.city?.nameEn}');
-    if (widget.apiPars.city != oldWidget.apiPars.city ||
-        widget.apiPars.country != oldWidget.apiPars.country ||
-        widget.apiPars.method != oldWidget.apiPars.method) assignPrayerDay();
-  }
+  // @override
+  // void didUpdateWidget(covariant DailyScreen oldWidget) {
+  //   super.didUpdateWidget(oldWidget);
+  //   debugPrint('Daily old-widget City: ${oldWidget.apiPars.city?.nameEn}');
+  //   debugPrint('Daily current-widget City: ${widget.apiPars.city?.nameEn}');
+  //   if (widget.apiPars.city != oldWidget.apiPars.city ||
+  //       widget.apiPars.country != oldWidget.apiPars.country ||
+  //       widget.apiPars.method != oldWidget.apiPars.method) assignPrayerDay();
+  //   // No need to add 'is24H' comparison/condition to the expression as its effect doesn't require a new API call
+  // }
 
   @override
   void initState() {
@@ -41,7 +46,7 @@ class _PrayerFutBuilderState extends State<PrayerFutBuilder> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: prayerFuture,
+      future: dayFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator()); // Loading
@@ -52,14 +57,15 @@ class _PrayerFutBuilderState extends State<PrayerFutBuilder> {
         } else if (snapshot.hasData) {
           final prayers = snapshot.data!.data.prayers;
           final hijri = snapshot.data!.data.date.hijri;
-          nextPrayer = Utils.getNextPrayer(
+          nextPrayer = NextPrayerService.getNextPrayer(
               prayers: prayers, date: date, nextPrayer: nextPrayer);
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                NextPrayer(nextPrayer: nextPrayer),
-                const SizedBox(height: 30),
+                NextPrayer(
+                    nextPrayer: nextPrayer!, is24H: widget.apiPars.is24H),
+                const SizedBox(height: 20),
                 Card(
                   margin: const EdgeInsets.all(8.0),
                   elevation: 4,
@@ -69,7 +75,8 @@ class _PrayerFutBuilderState extends State<PrayerFutBuilder> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text('${hijri.day} ${hijri.monthAr} ${hijri.year}'),
+                        Text('${hijri.day} ${hijri.monthAr} ${hijri.year}'
+                            .toArNums()),
                         Text(hijri.weekdayAr),
                         Row(
                           children: [
@@ -79,8 +86,9 @@ class _PrayerFutBuilderState extends State<PrayerFutBuilder> {
                                 final selectedDate = await showDatePicker(
                                   context: context,
                                   initialDate: date,
-                                  firstDate: Utils.now,
-                                  lastDate: DateTime(Utils.now.year + 62),
+                                  firstDate: NextPrayerService.now,
+                                  lastDate:
+                                      DateTime(NextPrayerService.now.year + 62),
                                 );
                                 if (selectedDate != null) {
                                   setState(() {
@@ -92,15 +100,15 @@ class _PrayerFutBuilderState extends State<PrayerFutBuilder> {
                               },
                               icon: const Icon(Icons.calendar_month),
                             ),
-                            Text(ApiService.formatDate(date)),
+                            Text(ApiService.formatDate(date).toArNums()),
                           ],
                         ),
                       ],
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
-                PrayerListView(prayers: prayers),
+                const SizedBox(height: 20),
+                PrayerListView(prayers: prayers, is24H: widget.apiPars.is24H),
               ],
             ),
           );

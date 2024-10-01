@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:prayer_times/models/user_settings.dart';
+import 'package:prayer_times/models/api_pars.dart';
+import 'package:prayer_times/screens/daily_screen.dart';
+import 'package:prayer_times/services/api_service.dart';
 import 'package:prayer_times/services/country_city_service.dart';
-import 'package:prayer_times/utils/string_extensions.dart';
 // import 'package:prayer_times/screens/picker_screen.dart';
 import 'package:prayer_times/widgets/custom_dropdown_button.dart';
 import 'package:prayer_times/widgets/custom_picker_button.dart';
 import 'package:prayer_times/widgets/custom_switch.dart';
 import 'package:uni_country_city_picker/uni_country_city_picker.dart';
 
+ApiPars pickedApiPars = ApiPars();
+
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({
     super.key,
-    required this.callbackSettings,
-    required this.passedSettings,
+    required this.callbackApiArgs,
+    required this.passedApiPars,
   });
   // static const String routeName = '/settings';
-  final void Function(UserSettings apiPars) callbackSettings;
-  final UserSettings passedSettings;
+  final void Function(ApiPars apiPars) callbackApiArgs;
+  final ApiPars passedApiPars;
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -24,12 +27,12 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   List<Country> countries = [];
-  bool _loading = false;
+  bool isLoading = false;
 
   void setCountries() async {
-    setState(() => _loading = true);
-    countries = await CountryCityService.initCountriesAndCities();
-    setState(() => _loading = false);
+    setState(() => isLoading = true);
+    countries = await CountryCityUtils.initCountriesAndCities();
+    setState(() => isLoading = false);
   }
 
   List<Method> methodList = [];
@@ -39,7 +42,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
         .toList();
   }
 
-  late UserSettings pickedSettings;
   String countryLabel = 'الدولة';
   String cityLabel = 'المدينة';
   // bool is24H = false;
@@ -49,7 +51,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     super.initState();
     setCountries();
     getMethods();
-    pickedSettings = widget.passedSettings;
+    pickedApiPars = widget.passedApiPars;
   }
 
   @override
@@ -58,19 +60,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop) return;
-        if (pickedSettings.city == null) {
+        if (pickedApiPars.city == null) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('قم باختيار الدولة والمدينة أولا')),
           );
         } else {
-          debugPrint('Picked city just b4 pop: ${pickedSettings.city?.nameEn}');
-          widget.callbackSettings(pickedSettings);
+          debugPrint('Picked city just b4 pop: ${pickedApiPars.city?.nameEn}');
+          dayFuture = ApiService.getPrayerDay(apiPars: pickedApiPars);
+          widget.callbackApiArgs(pickedApiPars);
           Navigator.of(context).pop();
         }
       },
       child: Scaffold(
         appBar: AppBar(title: const Text('الإعدادات')),
-        body: _loading
+        body: isLoading
             ? const LinearProgressIndicator()
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,49 +81,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   CustomPickerButton(
                     iText: countryLabel,
                     items: countries,
-                    pickedItem: pickedSettings.country,
+                    pickedItem: pickedApiPars.country,
                     onItemSelected: (selectedCountry) => setState(() {
-                      pickedSettings.country = selectedCountry as Country;
-                      pickedSettings.city =
-                          null; // Reset city on country change
+                      pickedApiPars.country = selectedCountry as Country;
+                      pickedApiPars.city = null; // Reset city on country change
                     }),
                   ),
                   CustomPickerButton(
                     iText: cityLabel,
-                    items: pickedSettings.country?.cities ?? [],
-                    pickedItem: pickedSettings.city,
-                    isXPicked: pickedSettings.country != null,
+                    items: pickedApiPars.country?.cities ?? [],
+                    pickedItem: pickedApiPars.city,
+                    isXPicked: pickedApiPars.country != null,
                     onItemSelected: (selectedCity) {
-                      setState(
-                          () => pickedSettings.city = selectedCity as City);
+                      setState(() => pickedApiPars.city = selectedCity as City);
                     },
                   ),
                   CustomDropdownButton(
                     methodList: methodList,
-                    buttonValue: pickedSettings.method,
+                    buttonValue: pickedApiPars.method,
                     onChanged: (newMethod) {
                       // newMethod as Method;
                       debugPrint('Picked method: ${newMethod?.name}');
-                      setState(() => pickedSettings.method = newMethod);
+                      setState(() => pickedApiPars.method = newMethod);
                     },
                   ),
                   CustomSwitch(
-                    value: pickedSettings.is24H,
+                    is24H: pickedApiPars.is24H,
                     onChanged: (isOn) {
-                      setState(() => pickedSettings.is24H = isOn);
+                      setState(() => pickedApiPars.is24H = isOn);
                     },
-                    title: 'تنسيق 24 ساعة'.toArNums(),
-                    subtitle:
-                        'صيغة الوقت الحالية: ${pickedSettings.is24H ? '24' : '12'} ساعة'
-                            .toArNums(),
-                  ),
-                  CustomSwitch(
-                    value: pickedSettings.is24H,
-                    onChanged: (isOn) {
-                      setState(() => pickedSettings.is24H = isOn);
-                    },
-                    title: 'تفعيل الإشعارات',
-                    subtitle: 'إرسال إشعار تنبيهي عند كل صلاة',
                   ),
                 ],
               ),

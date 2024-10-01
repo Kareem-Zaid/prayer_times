@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prayer_times/models/prayer_day.dart';
-import 'package:prayer_times/utils.dart';
+import 'package:prayer_times/utils/helpers.dart';
 
 class NextPrayer extends StatefulWidget {
   const NextPrayer({super.key, required this.nextPrayer});
@@ -14,8 +14,8 @@ class NextPrayer extends StatefulWidget {
 class _NextPrayerState extends State<NextPrayer> {
   // static DateTime get now => DateTime.now();
   Duration nextPrayerEta(Prayer nextPrayer) {
-    final now = Utils.now;
-    DateTime nextPrayerTime = Utils.parseTime(nextPrayer.time);
+    final now = Helpers.now;
+    DateTime nextPrayerTime = Helpers.parseTime(nextPrayer.time);
 
     if (now.isAfter(nextPrayerTime) && nextPrayer.name == 'الفجر') {
       nextPrayerTime = nextPrayerTime.add(const Duration(days: 1));
@@ -96,7 +96,7 @@ class _NextPrayerState extends State<NextPrayer> {
             trailing: Text(widget.nextPrayer?.time ?? '...'),
           ),
         ),
-        Text(Utils.convertToArabicNumbers(formatEtaText(eta)),
+        Text(Helpers.convertToArabicNumbers(formatEtaText(eta)),
             style: const TextStyle(fontSize: 20)),
         // Text('Seconds: $seconds'),
       ],

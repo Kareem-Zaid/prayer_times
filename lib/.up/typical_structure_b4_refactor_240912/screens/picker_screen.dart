@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PickerScreen extends StatefulWidget {
-  const PickerScreen({super.key, required this.items, required this.iLabel});
-  final List items;
-  final String iLabel;
+  const PickerScreen({super.key, required this.items, required this.label});
 
+  final List items;
+  final String label;
   @override
   State<PickerScreen> createState() => _PickerScreenState();
 }
@@ -49,7 +49,7 @@ class _PickerScreenState extends State<PickerScreen> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Center(child: Text('اختر ${widget.iLabel}')),
+      title: Center(child: Text('اختر ${widget.label}')),
       content: SizedBox(
         height: MediaQuery.of(context).size.height * .7,
         width: MediaQuery.of(context).size.width * .7,
@@ -57,7 +57,7 @@ class _PickerScreenState extends State<PickerScreen> {
           children: [
             TextField(
               decoration:
-                  InputDecoration(labelText: 'أدخل اسم ${widget.iLabel}'),
+                  InputDecoration(labelText: 'أدخل اسم ${widget.label}'),
               onChanged: (v) {
                 setState(() => filteredItems = searchLogic(v, widget.items));
               },

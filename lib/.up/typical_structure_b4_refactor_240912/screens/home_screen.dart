@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:prayer_times/api_service.dart';
-import 'package:prayer_times/prayer_fut_builder.dart';
+import 'package:prayer_times/services/api_service.dart';
+import 'package:prayer_times/widgets/prayer_fut_builder.dart';
 import 'package:prayer_times/screens/settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {

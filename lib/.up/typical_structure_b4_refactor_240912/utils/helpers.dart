@@ -1,7 +1,7 @@
 // import 'package:flutter/material.dart';
 import 'package:prayer_times/models/prayer_day.dart';
 
-class Utils {
+class Helpers {
   // static final DateTime now = DateTime.now(); // Doesn't update time on rebuild (hot reload)
   // static DateTime now = DateTime.now(); // Doesn't update time on rebuild either
   static DateTime get now => DateTime.now(); // This one does update on rebuild
