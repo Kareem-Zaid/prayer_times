@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:prayer_times/models/user_settings.dart';
 import 'package:prayer_times/screens/monthly_screen.dart';
 import 'package:prayer_times/screens/yearly_screen.dart';
 import 'package:prayer_times/screens/daily_screen.dart';
 import 'package:prayer_times/screens/settings_screen.dart';
+import 'package:prayer_times/services/api_service.dart';
+import 'package:prayer_times/services/local_notifs_service.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -16,7 +19,8 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _counter = 0;
   UserSettings currentSettings = UserSettings();
-  int _tabIndex = 1;
+  int _selTabIndex = 0;
+  final LocalNotifsService _localNotifs = LocalNotifsService();
 
   void callbackApiPars(UserSettings settings) {
     setState(() => currentSettings = settings);
@@ -24,10 +28,32 @@ class _TabsScreenState extends State<TabsScreen> {
         'passApiArgs in HomeScreen: ${settings.country?.name}, ${settings.city?.name}, ${settings.method?.name}');
   }
 
+  void _refreshCurrentTab() {
+    setState(() {
+      if (_selTabIndex == 0) {
+        DailyScreenState.future = ApiService.getPrayerDay(
+            date: DateTime.now(), apiPars: currentSettings);
+      } else if (_selTabIndex == 1) {
+        MonthlyScreenState.future = ApiService.getPrayerMonth(
+            date: DateTime.now(), apiPars: currentSettings);
+      } else if (_selTabIndex == 2) {
+        YearlyScreenState.future = ApiService.getPrayerYear(
+            date: DateTime.now(), apiPars: currentSettings);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _localNotifs.schedulePrayerNotifications(currentSettings);
+    debugPrint('TabScreen initialized');
+  }
+
   @override
   Widget build(BuildContext context) {
-    // debugPrint('TabsSc Height: ${MediaQuery.sizeOf(context).height}');
-    // debugPrint('TabsSc Width: ${MediaQuery.sizeOf(context).width}');
+    debugPaintSizeEnabled = false; // Show layout gridlines
+
     List<Map<String, Object>> tabs = [
       {
         'Screen': DailyScreen(
@@ -65,8 +91,12 @@ class _TabsScreenState extends State<TabsScreen> {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: Text(tabs[_tabIndex]['Title'] as String),
+        title: Text(tabs[_selTabIndex]['Title'] as String),
         actions: [
+          IconButton(
+            onPressed: () => _refreshCurrentTab(),
+            icon: const Icon(Icons.refresh_rounded),
+          ),
           IconButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
@@ -82,11 +112,11 @@ class _TabsScreenState extends State<TabsScreen> {
       ),
       body: IndexedStack(
         // This enables the widget to keep the state of the inactive tabs intact while only switching the visible tab, which prevents 'DailyScreen' from rebuilding unnecessarily.
-        index: _tabIndex,
+        index: _selTabIndex,
         children: tabs.map((tab) => tab['Screen'] as Widget).toList(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: _tabIndex == 0
+      floatingActionButton: _selTabIndex == 0
           ? Stack(
               alignment: AlignmentDirectional.bottomCenter,
               children: [
@@ -122,11 +152,11 @@ class _TabsScreenState extends State<TabsScreen> {
             )
           : null,
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _tabIndex,
+        currentIndex: _selTabIndex,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         selectedItemColor: Theme.of(context).colorScheme.onSurface,
         // selectedIconTheme: IconThemeData(color: Colors.amber),
-        onTap: (ndx) => setState(() => _tabIndex = ndx),
+        onTap: (ndx) => setState(() => _selTabIndex = ndx),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),

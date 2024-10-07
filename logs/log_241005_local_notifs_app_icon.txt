@@ -1,0 +1,13 @@
+Performing hot restart...                                               
+Restarted application in ٣٬٠٢٩ms.
+E/flutter (11364): [ERROR:flutter/runtime/dart_vm_initializer.cc(41)] Unhandled Exception: PlatformException(invalid_icon, The resource app_icon could not be found. Please make sure it has been added as a drawable resource to your Android head project., null, null)
+E/flutter (11364): #0      StandardMethodCodec.decodeEnvelope (package:flutter/src/services/message_codecs.dart:648:7)
+E/flutter (11364): #1      MethodChannel._invokeMethod (package:flutter/src/services/platform_channel.dart:334:18)
+E/flutter (11364): <asynchronous suspension>
+E/flutter (11364): #2      AndroidFlutterLocalNotificationsPlugin.initialize (package:flutter_local_notifications/src/platform_flutter_local_notifications.dart:143:12)       
+E/flutter (11364): <asynchronous suspension>
+E/flutter (11364): #3      LocalNotifsService.initLocalNotifs (package:prayer_times/services/local_notifs_service.dart:50:5)
+E/flutter (11364): <asynchronous suspension>
+E/flutter (11364): #4      main (package:prayer_times/main.dart:27:3)
+E/flutter (11364): <asynchronous suspension>
+E/flutter (11364):

@@ -13,11 +13,11 @@ class DailyScreen extends StatefulWidget {
   final UserSettings settings;
 
   @override
-  State<DailyScreen> createState() => _DailyScreenState();
+  State<DailyScreen> createState() => DailyScreenState();
 }
 
-class _DailyScreenState extends State<DailyScreen> {
-  late Future<PrayerDay> _future;
+class DailyScreenState extends State<DailyScreen> {
+  static late Future<PrayerDay> future;
   DateTime focusedDate = DateTime.now();
   Prayer? nextPrayer;
 
@@ -25,7 +25,7 @@ class _DailyScreenState extends State<DailyScreen> {
 // Using getter fails as it keeps rebuilding unnecessarily (on each setState of TabsScreen even)
 
   void assignPrayerDay() {
-    _future = ApiService.getPrayerDay(
+    future = ApiService.getPrayerDay(
       date: focusedDate,
       apiPars: widget.settings,
     );
@@ -51,7 +51,7 @@ class _DailyScreenState extends State<DailyScreen> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _future,
+      future: future,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator()); // Loading
@@ -73,13 +73,12 @@ class _DailyScreenState extends State<DailyScreen> {
               children: [
                 NextPrayer(
                     nextPrayer: nextPrayer!, is24H: widget.settings.is24H),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Card(
-                  margin: const EdgeInsets.all(8.0),
                   elevation: 4,
                   color: Theme.of(context).colorScheme.surfaceContainerHighest,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -103,8 +102,6 @@ class _DailyScreenState extends State<DailyScreen> {
                                     assignPrayerDay();
                                   });
                                 }
-                                debugPrint(
-                                    'Date after selection: $focusedDate');
                               },
                               icon: const Icon(Icons.calendar_month),
                             ),
@@ -115,10 +112,10 @@ class _DailyScreenState extends State<DailyScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
                 PrayerListView(
                   prayerList: prayerList,
                   is24H: widget.settings.is24H,
+                  tileHeight: MediaQuery.sizeOf(context).height / 12,
                 ),
               ],
             ),

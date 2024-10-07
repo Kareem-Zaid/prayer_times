@@ -1,0 +1,173 @@
+Running Gradle task 'assembleDebug'...                            ٣٢٦٫١s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...          ١٧٫١s
+I/flutter ( 7885): Notifications initialized
+I/flutter ( 7885): App ran
+Syncing files to device Redmi 8...                               ١٬٥٨٦ms
+
+Flutter run key commands.
+r Hot reload.
+R Hot restart.
+h List all available interactive commands.
+d Detach (terminate "flutter run" but leave application running).
+c Clear the screen
+q Quit (terminate the application on the device).
+
+A Dart VM Service on Redmi 8 is available at: http://127.0.0.1:65137/YsMAD48oeCg=/
+I/le.prayer_time( 7885): ProcessProfilingInfo new_methods=1388 is saved saved_to_disk=1 resolve_classes_delay=8000
+D/ProfileInstaller( 7885): Installing profile for com.example.prayer_times
+W/Gralloc3( 7885): mapper 3.x is not supported
+The Flutter DevTools debugger and profiler on Redmi 8 is available at: http://127.0.0.1:9101?uri=http://127.0.0.1:65137/YsMAD48oeCg=/
+W/le.prayer_time( 7885): Accessing hidden method Lsun/misc/Unsafe;->compareAndSwapInt(Ljava/lang/Object;JII)Z (greylist, linking, allowed)
+I/le.prayer_time( 7885): Background young concurrent copying GC freed 126794(4679KB) AllocSpace objects, 38(4364KB) LOS objects, 54% free, 7055KB/15MB, paused 9.334ms total 56.322ms
+I/le.prayer_time( 7885): Background concurrent copying GC freed 141062(5325KB) AllocSpace objects, 63(8352KB) LOS objects, 71% free, 4842KB/16MB, paused 3.812ms total 172.242ms
+I/le.prayer_time( 7885): Background concurrent copying GC freed 206935(7735KB) AllocSpace objects, 54(7304KB) LOS objects, 72% free, 4691KB/16MB, paused 155us total 114.710msI/Choreographer( 7885): Skipped 260 frames!  The application may be doing too much work on its main thread.
+I/flutter ( 7885): Scheduled notifications for month 1
+W/Looper  ( 7885): Slow Looper main: doFrame is 4350ms late because of 71 msg, msg 5 took 88ms (seq=580 late=2662ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 8 took 58ms (seq=583 late=2835ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 9 took 58ms (seq=584 late=2890ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 10 took 60ms (seq=585 late=2945ms 
+h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 13 took 96ms (seq=588 late=3087ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 14 took 64ms (seq=589 late=3181ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 15 took 51ms (seq=590 late=3244ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 16 took 52ms (seq=591 late=3293ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 17 took 60ms (seq=592 late=3345ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 18 took 88ms (seq=593 late=3404ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 19 took 91ms (seq=594 late=3490ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 23 took 56ms (seq=598 late=3712ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 24 took 52ms (seq=599 late=3768ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 25 took 86ms (seq=600 late=3819ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 26 took 84ms (seq=601 late=3904ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 27 took 61ms (seq=602 late=3986ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 28 took 51ms (seq=603 late=4045ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 29 took 58ms (seq=604 late=4094ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 30 took 53ms (seq=605 late=4151ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 32 took 96ms (seq=607 late=4250ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 33 took 102ms (seq=608 late=4344ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 34 took 53ms (seq=609 late=4445ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 35 took 58ms (seq=610 late=4496ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 36 took 57ms (seq=611 late=4553ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 37 took 51ms (seq=612 late=4608ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 38 took 109ms (seq=613 late=4658ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 39 took 91ms (seq=614 late=4765ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 40 took 56ms (seq=615 late=4854ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 41 took 52ms (seq=616 late=4908ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 42 took 97ms (seq=617 late=4959ms h=android.os.Handl
+I/Choreographer( 7885): Skipped 234 frames!  The application may be doing too much work on its main thread.
+I/flutter ( 7885): Scheduled notifications for month 2
+W/Looper  ( 7885): Slow Looper main: doFrame is 3906ms late because of 39 msg, msg 1 took 94ms (seq=755 late=8030ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 2 took 100ms (seq=756 late=8123ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 3 took 93ms (seq=757 late=8223ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 4 took 99ms (seq=758 late=8315ms 
+h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 5 took 93ms (seq=759 late=8413ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 6 took 93ms (seq=760 late=8505ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 7 took 99ms (seq=761 late=8597ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 8 took 103ms (seq=762 late=8695ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 9 took 98ms (seq=763 late=8797ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 10 took 104ms (seq=764 late=8894ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 11 took 95ms (seq=765 late=8997ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 12 took 96ms (seq=766 late=9091ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 13 took 102ms (seq=767 late=9186ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 14 took 95ms (seq=768 late=9287ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 15 took 104ms (seq=769 late=9381ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 16 took 95ms (seq=770 late=9484ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 17 took 102ms (seq=771 late=9578ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 18 took 95ms (seq=772 late=9679ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 19 took 97ms (seq=773 late=9772ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 20 took 103ms (seq=774 late=9868ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 21 took 98ms (seq=775 late=9970ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 22 took 103ms (seq=776 late=10067ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 23 took 98ms (seq=777 late=10170ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 24 took 99ms (seq=778 late=10267ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 25 took 105ms (seq=779 late=10364ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 26 took 98ms (seq=780 late=10468ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 27 took 104ms (seq=781 late=10566ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 28 took 99ms (seq=782 late=10669ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 29 took 101ms (seq=783 late=10767ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 30 took 106ms (seq=784 late=10867ms h=and
+I/Choreographer( 7885): Skipped 405 frames!  The application may be doing too much work on its main thread.
+I/flutter ( 7885): Scheduled notifications for month 3
+W/Looper  ( 7885): Slow Looper main: doFrame is 6759ms late because of 45 msg, msg 1 took 139ms (seq=905 late=13599ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 2 took 141ms (seq=906 late=13738ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 3 took 146ms (seq=907 late=13878ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 4 took 139ms (seq=908 late=14023ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 5 took 143ms (seq=909 late=14161ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 6 took 149ms (seq=910 late=14304ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 7 took 141ms (seq=911 late=14452ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 8 
+took 147ms (seq=912 late=14592ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 9 took 151ms (seq=913 late=14738ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 10 took 141ms (seq=914 late=14888ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 11 took 147ms (seq=915 late=15028ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 12 took 144ms (seq=916 late=15174ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 13 took 149ms (seq=917 late=15317ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 14 took 151ms (seq=918 late=15465ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 15 took 142ms (seq=919 late=15614ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 16 took 149ms (seq=920 late=15755ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 17 took 148ms (seq=921 late=15904ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 18 took 144ms (seq=922 late=16051ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 19 took 151ms (seq=923 late=16195ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 20 took 150ms (seq=924 late=16346ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 21 took 143ms (seq=925 late=16495ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 22 took 152ms (seq=926 late=16637ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 23 took 151ms (seq=927 late=16788ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 24 took 170ms (seq=928 late=16938ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 25 took 153ms (seq=929 late=17107ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 26 took 153ms (seq=930 late=17258ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 27 took 146ms (seq=931 late=17410ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 28 took 154ms (seq=932 late=17556ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 29 took 153ms (seq=933 late=17708ms h=android.os.Handler c=io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0), msg 30
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885): Failed to handle method call
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885): java.lang.IllegalStateException: Maximum limit of concurrent alarms 500 reached for uid: u0a694, callingPackage: com.example.prayer_times
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Parcel.createException(Parcel.java:2082)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Parcel.readException(Parcel.java:2042)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Parcel.readException(Parcel.java:1990)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.IAlarmManager$Stub$Proxy.set(IAlarmManager.java:301)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.AlarmManager.setImpl(AlarmManager.java:701)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.AlarmManager.setExactAndAllowWhileIdle(AlarmManager.java:906)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at androidx.core.app.AlarmManagerCompat$Api23Impl.setExactAndAllowWhileIdle(AlarmManagerCompat.java:299)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at androidx.core.app.AlarmManagerCompat.setExactAndAllowWhileIdle(AlarmManagerCompat.java:225)        
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.setupAllowWhileIdleAlarm(FlutterLocalNotificationsPlugin.java:747)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.setupAlarm(FlutterLocalNotificationsPlugin.java:725)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.zonedScheduleNotification(FlutterLocalNotificationsPlugin.java:591)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.zonedSchedule(FlutterLocalNotificationsPlugin.java:1613)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.onMethodCall(FlutterLocalNotificationsPlugin.java:1434)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at io.flutter.plugin.common.MethodChannel$IncomingMethodCallHandler.onMessage(MethodChannel.java:267)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at io.flutter.embedding.engine.dart.DartMessenger.invokeHandler(DartMessenger.java:292)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at io.flutter.embedding.engine.dart.DartMessenger.lambda$dispatchMessageToQueue$0$io-flutter-embedding-engine-dart-DartMessenger(DartMessenger.java:319)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0.run(Unknown Source:12)    
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Handler.handleCallback(Handler.java:883)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Handler.dispatchMessage(Handler.java:100)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Looper.loop(Looper.java:223)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.ActivityThread.main(ActivityThread.java:7562)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at java.lang.reflect.Method.invoke(Native Method)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:539)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:950)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885): Caused by: android.os.RemoteException: Remote stack trace:
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.android.server.AlarmManagerService.setImpl(AlarmManagerService.java:1782)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.android.server.AlarmManagerService$3.set(AlarmManagerService.java:2124)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.IAlarmManager$Stub.onTransact(IAlarmManager.java:168)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Binder.execTransactInternal(Binder.java:1021)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Binder.execTransact(Binder.java:994)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885): Failed to handle method call
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885): java.lang.IllegalStateException: Maximum limit of concurrent alarms 500 reached for uid: u0a694, callingPackage: com.example.prayer_times
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Parcel.createException(Parcel.java:2082)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Parcel.readException(Parcel.java:2042)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Parcel.readException(Parcel.java:1990)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.IAlarmManager$Stub$Proxy.set(IAlarmManager.java:301)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.AlarmManager.setImpl(AlarmManager.java:701)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.AlarmManager.setExactAndAllowWhileIdle(AlarmManager.java:906)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at androidx.core.app.AlarmManagerCompat$Api23Impl.setExactAndAllowWhileIdle(AlarmManagerCompat.java:299)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at androidx.core.app.AlarmManagerCompat.setExactAndAllowWhileIdle(AlarmManagerCompat.java:225)        
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.setupAllowWhileIdleAlarm(FlutterLocalNotificationsPlugin.java:747)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.setupAlarm(FlutterLocalNotificationsPlugin.java:725)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.zonedScheduleNotification(FlutterLocalNotificationsPlugin.java:591)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.zonedSchedule(FlutterLocalNotificationsPlugin.java:1613)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.onMethodCall(FlutterLocalNotificationsPlugin.java:1434)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at io.flutter.plugin.common.MethodChannel$IncomingMethodCallHandler.onMessage(MethodChannel.java:267) 
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at io.flutter.embedding.engine.dart.DartMessenger.invokeHandler(DartMessenger.java:292)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at io.flutter.embedding.engine.dart.DartMessenger.lambda$dispatchMessageToQueue$0$io-flutter-embedding-engine-dart-DartMessenger(DartMessenger.java:319)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0.run(Unknown Source:12)    
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Handler.handleCallback(Handler.java:883)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Handler.dispatchMessage(Handler.java:100)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Looper.loop(Looper.java:223)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.ActivityThread.main(ActivityThread.java:7562)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at java.lang.reflect.Method.invoke(Native Method)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:539)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:950)
+I/chatty  ( 7885): uid=10694(com.example.prayer_times) identical 102 lines
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885): Failed to handle method call
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885): java.lang.IllegalStateException: Maximum limit of concurrent alarms 500 reached for uid: u0a694, callingPackage: com.example.prayer_times
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Parcel.createException(Parcel.java:2082)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Parcel.readException(Parcel.java:2042)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Parcel.readException(Parcel.java:1990)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.IAlarmManager$Stub$Proxy.set(IAlarmManager.java:301)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.AlarmManager.setImpl(AlarmManager.java:701)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.AlarmManager.setExactAndAllowWhileIdle(AlarmManager.java:906)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at androidx.core.app.AlarmManagerCompat$Api23Impl.setExactAndAllowWhileIdle(AlarmManagerCompat.java:299)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at androidx.core.app.AlarmManagerCompat.setExactAndAllowWhileIdle(AlarmManagerCompat.java:225)        
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.setupAllowWhileIdleAlarm(FlutterLocalNotificationsPlugin.java:747)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.setupAlarm(FlutterLocalNotificationsPlugin.java:725)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.zonedScheduleNotification(FlutterLocalNotificationsPlugin.java:591)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.zonedSchedule(FlutterLocalNotificationsPlugin.java:1613)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.onMethodCall(FlutterLocalNotificationsPlugin.java:1434)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at io.flutter.plugin.common.MethodChannel$IncomingMethodCallHandler.onMessage(MethodChannel.java:267) 
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at io.flutter.embedding.engine.dart.DartMessenger.invokeHandler(DartMessenger.java:292)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at io.flutter.embedding.engine.dart.DartMessenger.lambda$dispatchMessageToQueue$0$io-flutter-embedding-engine-dart-DartMessenger(DartMessenger.java:319)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0.run(Unknown Source:12)    
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Handler.handleCallback(Handler.java:883)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Handler.dispatchMessage(Handler.java:100)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.os.Looper.loop(Looper.java:223)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at android.app.ActivityThread.main(ActivityThread.java:7562)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at java.lang.reflect.Method.invoke(Native Method)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:539)
+E/MethodChannel#dexterous.com/flutter/local_notifications( 7885):       at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:950)
+E/flutter ( 7885): [ERROR:flutter/runtime/dart_vm_initializer.cc(41)] Unhandled Exception: PlatformException(error, Maximum limit of concurrent alarms 500 reached for uid: u0a694, callingPackage: com.example.prayer_times, null, java.lang.IllegalStateException: Maximum limit of concurrent alarms 500 reached for uid: u0a694, callingPackage: com.example.prayer_times
+E/flutter ( 7885):      at android.os.Parcel.createException(Parcel.java:2082)
+E/flutter ( 7885):      at android.os.Parcel.readException(Parcel.java:2042)
+E/flutter ( 7885):      at android.os.Parcel.readException(Parcel.java:1990)
+E/flutter ( 7885):      at android.app.IAlarmManager$Stub$Proxy.set(IAlarmManager.java:301)
+E/flutter ( 7885):      at android.app.AlarmManager.setImpl(AlarmManager.java:701)
+E/flutter ( 7885):      at android.app.AlarmManager.setExactAndAllowWhileIdle(AlarmManager.java:906)
+E/flutter ( 7885):      at androidx.core.app.AlarmManagerCompat$Api23Impl.setExactAndAllowWhileIdle(AlarmManagerCompat.java:299)
+E/flutter ( 7885):      at androidx.core.app.AlarmManagerCompat.setExactAndAllowWhileIdle(AlarmManagerCompat.java:225)
+E/flutter ( 7885):      at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.setupAllowWhileIdleAlarm(FlutterLocalNotificationsPlugin.java:747)
+E/flutter ( 7885):      at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.setupAlarm(FlutterLocalNotificationsPlugin.java:725)
+E/flutter ( 7885):      at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.zonedScheduleNotification(FlutterLocalNotificationsPlugin.java:591)        
+E/flutter ( 7885):      at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.zonedSchedule(FlutterLocalNotificationsPlugin.java:1613)
+E/flutter ( 7885):      at com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin.onMethodCall(FlutterLocalNotificationsPlugin.java:1434)
+E/flutter ( 7885):      at io.flutter.plugin.common.MethodChannel$IncomingMethodCallHandler.onMessage(MethodChannel.java:267)
+E/flutter ( 7885):      at io.flutter.embedding.engine.dart.DartMessenger.invokeHandler(DartMessenger.java:292)
+E/flutter ( 7885):      at io.flutter.embedding.engine.dart.DartMessenger.lambda$dispatchMessageToQueue$0$io-flutter-embedding-engine-dart-DartMessenger(DartMessenger.java:319)
+E/flutter ( 7885):      at io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0.run(Unknown Source:12)
+E/flutter ( 7885):      at android.os.Handler.handleCallback(Handler.java:883)
+E/flutter ( 7885):      at android.os.Handler.dispatchMessage(Handler.java:100)
+E/flutter ( 7885):      at android.os.Looper.loop(Looper.java:223)
+E/flutter ( 7885):      at android.app.ActivityThread.main(ActivityThread.java:7562)
+E/flutter ( 7885):      at java.lang.reflect.Method.invoke(Native Method)
+E/flutter ( 7885):      at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:539)
+E/flutter ( 7885):      at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:950)
+E/flutter ( 7885): Caused by: android.os.RemoteException: Remote stack trace:
+E/flutter ( 7885):      at com.android.server.AlarmManagerService.setImpl(AlarmManagerService.java:1782)
+E/flutter ( 7885):      at com.android.server.AlarmManagerService$3.set(AlarmManagerService.java:2124)
+E/flutter ( 7885):      at android.app.IAlarmManager$Stub.onTransact(IAlarmManager.java:168)
+E/flutter ( 7885):      at android.os.Binder.execTransactInternal(Binder.java:1021)
+E/flutter ( 7885):      at android.os.Binder.execTransact(Binder.java:994)
+E/flutter ( 7885):
+E/flutter ( 7885): )
+E/flutter ( 7885): #0      StandardMethodCodec.decodeEnvelope (package:flutter/src/services/message_codecs.dart:648:7)
+E/flutter ( 7885): #1      MethodChannel._invokeMethod (package:flutter/src/services/platform_channel.dart:334:18)
+E/flutter ( 7885): <asynchronous suspension>
+E/flutter ( 7885): #2      AndroidFlutterLocalNotificationsPlugin.zonedSchedule (package:flutter_local_notifications/src/platform_flutter_local_notifications.dart:206:5)     
+E/flutter ( 7885): <asynchronous suspension>
+E/flutter ( 7885): #3      FlutterLocalNotificationsPlugin.zonedSchedule (package:flutter_local_notifications/src/flutter_local_notifications_plugin.dart:349:7)
+E/flutter ( 7885): <asynchronous suspension>
+E/flutter ( 7885): #4      LocalNotifsService.zonedScheduleNotification (package:prayer_times/services/local_notifs_service.dart:103:5)
+E/flutter ( 7885): <asynchronous suspension>
+E/flutter ( 7885): #5      Future.wait.<anonymous closure> (dart:async/future.dart:534:21)
+E/flutter ( 7885): <asynchronous suspension>
+E/flutter ( 7885): #6      _SettingsScreenState._schedulePrayerNotifications (package:prayer_times/screens/settings_screen.dart:60:7)
+E/flutter ( 7885): <asynchronous suspension>
+E/flutter ( 7885): #7      _SettingsScreenState.build.<anonymous closure> (package:prayer_times/screens/settings_screen.dart:148:25)
+E/flutter ( 7885): <asynchronous suspension>
+E/flutter ( 7885):
+I/flutter ( 7885): Picked item after pop: آيسلندا
+I/flutter ( 7885): Picked item after pop: Capital Region
+I/flutter ( 7885): passApiArgs in HomeScreen: آيسلندا, Capital Region, null

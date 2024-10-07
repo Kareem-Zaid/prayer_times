@@ -11,11 +11,11 @@ class YearlyScreen extends StatefulWidget {
   final UserSettings settings;
 
   @override
-  State<YearlyScreen> createState() => _YearlyScreenState();
+  State<YearlyScreen> createState() => YearlyScreenState();
 }
 
-class _YearlyScreenState extends State<YearlyScreen> {
-  late Future<PrayerYear> _future;
+class YearlyScreenState extends State<YearlyScreen> {
+  static late Future<PrayerYear> future;
   DateTime _focusedDay = DateTime.now();
   late DateTime _selectedDay;
   CalendarFormat _calendarFormat = CalendarFormat.month;
@@ -25,9 +25,9 @@ class _YearlyScreenState extends State<YearlyScreen> {
 
   Future<Map<DateTime, List<Prayer>>> assignPrayerYear() async {
     // API call + Map prayers per day (Create a yearly prayer map) + Assign prayer list as per selected day
-    _future =
+    future =
         ApiService.getPrayerYear(date: _focusedDay, apiPars: widget.settings);
-    final PrayerYear prayerYear = await _future;
+    final PrayerYear prayerYear = await future;
     final prayerYearData = prayerYear.yearData;
     for (var monthStr in prayerYearData.keys) {
       for (var dayData in prayerYearData[monthStr]!) {
@@ -70,7 +70,7 @@ class _YearlyScreenState extends State<YearlyScreen> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _future,
+      future: future,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator()); // Loading
@@ -123,29 +123,33 @@ class _YearlyScreenState extends State<YearlyScreen> {
                   weekdayStyle: TextStyle(fontSize: 14),
                   weekendStyle: TextStyle(fontSize: 14),
                 ),
-                daysOfWeekHeight: MediaQuery.sizeOf(context).height / 35,
+                pageJumpingEnabled: true,
                 locale: 'ar',
                 firstDay: DateTime(DateTime.now().year),
                 lastDay: DateTime(DateTime.now().year + 62),
                 focusedDay: _focusedDay,
                 selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-                onDaySelected: (selectedDay, focusedDay) {
+                onDaySelected: (selectedDay, focusedDay) async {
+                  bool isSameYear = _focusedDay.year == selectedDay.year;
                   if (!isSameDay(_selectedDay, selectedDay)) {
                     setState(() {
                       _selectedDay = selectedDay;
                       _focusedDay = focusedDay;
                     });
+                    !isSameYear ? await assignPrayerYear() : null;
                     _selectedPrayers.value =
                         prayerPerDay[DateUtils.dateOnly(selectedDay)]!;
                   }
                 },
                 onPageChanged: (focusedDay) async {
-                  bool isSameYear = _focusedDay.year == focusedDay.year;
+                  bool isSameYear = _selectedDay.year == focusedDay.year;
                   _focusedDay = focusedDay;
                   !isSameYear ? await assignPrayerYear() : null;
                 },
                 calendarFormat: _calendarFormat,
                 onFormatChanged: (cF) => setState(() => _calendarFormat = cF),
+                daysOfWeekHeight: MediaQuery.sizeOf(context).height / 32,
+                rowHeight: MediaQuery.sizeOf(context).height / 22,
               ),
               const Spacer(),
               ValueListenableBuilder(
@@ -153,9 +157,10 @@ class _YearlyScreenState extends State<YearlyScreen> {
                 builder: (context, value, child) => PrayerListView(
                   prayerList: value,
                   is24H: widget.settings.is24H,
-                  tileHeight: MediaQuery.sizeOf(context).height / 16,
+                  tileHeight: MediaQuery.sizeOf(context).height / 15,
                 ),
               ),
+              const Spacer(),
             ],
           );
         } else {

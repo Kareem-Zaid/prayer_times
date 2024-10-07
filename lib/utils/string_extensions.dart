@@ -24,6 +24,7 @@ extension StringExtensions on String {
     final now = DateTime.now();
     List<String> parts = [];
     int mins;
+
     if (/* this. */ length == 5 && contains(':')) {
       parts = /* this. */ split(':');
       mins = int.parse(parts[1]);
@@ -33,6 +34,7 @@ extension StringExtensions on String {
     } else {
       throw Exception('Invalid time format');
     }
+
     final hours = int.parse(parts[0]);
 
     return DateTime(now.year, now.month, now.day, hours, mins);

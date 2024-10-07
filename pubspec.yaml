@@ -35,9 +35,12 @@ dependencies:
   flutter_local_notifications: ^17.2.3
   flutter_localizations:
     sdk: flutter
+  flutter_timezone: ^3.0.1
+  geolocator: ^13.0.1
   http: ^1.2.2
   scrollable_positioned_list: ^0.3.8
   table_calendar: ^3.1.2
+  timezone: ^0.9.4
   uni_country_city_picker: ^1.0.1
 
 dev_dependencies:

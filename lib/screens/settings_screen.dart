@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prayer_times/models/user_settings.dart';
 import 'package:prayer_times/services/country_city_service.dart';
+import 'package:prayer_times/services/local_notifs_service.dart';
 import 'package:prayer_times/utils/string_extensions.dart';
-// import 'package:prayer_times/screens/picker_screen.dart';
 import 'package:prayer_times/widgets/custom_dropdown_button.dart';
 import 'package:prayer_times/widgets/custom_picker_button.dart';
 import 'package:prayer_times/widgets/custom_switch.dart';
@@ -25,6 +25,12 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   List<Country> countries = [];
   bool _loading = false;
+  bool _didCityChange = false;
+  bool _didMethodChange = false;
+  late UserSettings pickedSettings;
+  final LocalNotifsService _localNotifs = LocalNotifsService();
+  static const String countryLabel = 'الدولة';
+  static const String cityLabel = 'المدينة';
 
   void setCountries() async {
     setState(() => _loading = true);
@@ -32,23 +38,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     setState(() => _loading = false);
   }
 
-  List<Method> methodList = [];
-  void getMethods() {
-    methodList = Method.methods.entries
-        .map((x) => Method(index: x.key, name: x.value))
-        .toList();
-  }
-
-  late UserSettings pickedSettings;
-  String countryLabel = 'الدولة';
-  String cityLabel = 'المدينة';
-  // bool is24H = false;
-
   @override
   void initState() {
     super.initState();
     setCountries();
-    getMethods();
     pickedSettings = widget.passedSettings;
   }
 
@@ -63,7 +56,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SnackBar(content: Text('قم باختيار الدولة والمدينة أولا')),
           );
         } else {
-          debugPrint('Picked city just b4 pop: ${pickedSettings.city?.nameEn}');
+          // Reschedule notifications if on and any of the API parameters change
+          // if (pickedSettings.isNotifsOn && (didCityChange || didMethodChange)) {
+          if (_didCityChange || _didMethodChange) {
+            debugPrint('''Settings changed..
+                City: $_didCityChange | Method: $_didMethodChange''');
+            _localNotifs.schedulePrayerNotifications(pickedSettings);
+          }
           widget.callbackSettings(pickedSettings);
           Navigator.of(context).pop();
         }
@@ -79,11 +78,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     iText: countryLabel,
                     items: countries,
                     pickedItem: pickedSettings.country,
-                    onItemSelected: (selectedCountry) => setState(() {
-                      pickedSettings.country = selectedCountry as Country;
-                      pickedSettings.city =
-                          null; // Reset city on country change
-                    }),
+                    onItemSelected: (selectedCountry) {
+                      setState(() {
+                        pickedSettings.country = selectedCountry as Country;
+                        // Reset city on country change
+                        pickedSettings.city = null;
+                      });
+                    },
                   ),
                   CustomPickerButton(
                     iText: cityLabel,
@@ -91,17 +92,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     pickedItem: pickedSettings.city,
                     isXPicked: pickedSettings.country != null,
                     onItemSelected: (selectedCity) {
-                      setState(
-                          () => pickedSettings.city = selectedCity as City);
+                      if (selectedCity != pickedSettings.city) {
+                        setState(() {
+                          pickedSettings.city = selectedCity as City;
+                          _didCityChange = true;
+                        });
+                      }
                     },
                   ),
                   CustomDropdownButton(
-                    methodList: methodList,
+                    methodList: Method.methodList,
                     buttonValue: pickedSettings.method,
                     onChanged: (newMethod) {
                       // newMethod as Method;
-                      debugPrint('Picked method: ${newMethod?.name}');
-                      setState(() => pickedSettings.method = newMethod);
+                      if (newMethod != pickedSettings.method) {
+                        setState(() {
+                          pickedSettings.method = newMethod;
+                          _didMethodChange = true;
+                        });
+                      }
                     },
                   ),
                   CustomSwitch(
@@ -115,9 +124,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             .toArNums(),
                   ),
                   CustomSwitch(
-                    value: pickedSettings.is24H,
-                    onChanged: (isOn) {
-                      setState(() => pickedSettings.is24H = isOn);
+                    value: pickedSettings.isNotifsOn,
+                    onChanged: (isOn) async {
+                      setState(() => pickedSettings.isNotifsOn = isOn);
+                      if (!pickedSettings.isNotifsOn) {
+                        await _localNotifs.cancelAllNotifications();
+                        debugPrint('Notifications canceled');
+                      } else {
+                        _localNotifs
+                            .schedulePrayerNotifications(pickedSettings);
+                      }
                     },
                     title: 'تفعيل الإشعارات',
                     subtitle: 'إرسال إشعار تنبيهي عند كل صلاة',

@@ -1,0 +1,27 @@
+Performing hot restart...                                               
+Restarted application in ٢٬٧٦١ms.
+I/flutter (27340): TabScreen initialized
+I/flutter (27340): Done scheduling notifications for a week starting from 2024-10-07 19:24:42.994651+0300
+I/flutter (27340): Picked item after pop: آيسلندا
+I/flutter (27340): Picked item after pop: Capital Region
+I/flutter (27340): Settings changed..
+I/flutter (27340):                 City: true | Method: false
+I/flutter (27340): passApiArgs in HomeScreen: آيسلندا, Capital Region, null
+I/flutter (27340): Done scheduling notifications for a week starting from 2024-10-07 19:25:43.616594+0300
+I/flutter (27340): passApiArgs in HomeScreen: آيسلندا, Capital Region, null
+I/flutter (27340): Settings changed..
+I/flutter (27340):                 City: false | Method: true
+I/flutter (27340): passApiArgs in HomeScreen: آيسلندا, Capital Region, Jafari / Shia Ithna-Ashari
+I/flutter (27340): Done scheduling notifications for a week starting from 2024-10-07 19:26:18.250239+0300
+I/flutter (27340): Picked item after pop: أذربيجان
+I/flutter (27340): Picked item after pop: Agdash District
+I/flutter (27340): Settings changed..
+I/flutter (27340):                 City: true | Method: false
+I/flutter (27340): passApiArgs in HomeScreen: أذربيجان, Agdash District, Jafari / Shia Ithna-Ashari
+I/flutter (27340): Done scheduling notifications for a week starting from 2024-10-07 19:27:46.929509+0300
+I/flutter (27340): Picked item after pop: Absheron District
+I/flutter (27340): Settings changed..
+I/flutter (27340):                 City: true | Method: true
+I/flutter (27340): passApiArgs in HomeScreen: أذربيجان, Absheron District, Muslim World League
+I/flutter (27340): Done scheduling notifications for a week starting from 2024-10-07 19:32:39.376273+0300
+I/flutter (27340): Notifications canceled

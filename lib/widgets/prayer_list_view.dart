@@ -24,6 +24,7 @@ class PrayerListView extends StatelessWidget {
           SizedBox(
             height: tileHeight,
             child: Card(
+              margin: const EdgeInsets.symmetric(vertical: 1, horizontal: 4),
               child: ListTile(
                 leading: Text(prayer.name),
                 trailing: Text(
