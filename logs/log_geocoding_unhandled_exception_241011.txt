@@ -1,0 +1,93 @@
+Running Gradle task 'assembleDebug'...                             ٧٣٫٦s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...          ١٩٫٥s
+D/FlutterGeolocator(31389): Attaching Geolocator to activity
+D/FlutterGeolocator(31389): Creating service.
+D/FlutterGeolocator(31389): Binding to location service.
+D/FlutterGeolocator(31389): Geolocator foreground service connected
+D/FlutterGeolocator(31389): Initializing Geolocator services
+D/FlutterGeolocator(31389): Flutter engine connected. Connected engine count 1
+Syncing files to device Redmi 8...                                 ٣٧٨ms
+
+Flutter run key commands.
+r Hot reload.
+R Hot restart.
+h List all available interactive commands.
+d Detach (terminate "flutter run" but leave application running).
+c Clear the screen
+q Quit (terminate the application on the device).
+
+A Dart VM Service on Redmi 8 is available at: http://127.0.0.1:59463/RPU6LraG4RA=/
+I/flutter (31389): determinePosition started
+I/flutter (31389): passApiArgs in HomeScreen: null, null, null
+W/le.prayer_time(31389): Accessing hidden field Ljava/util/Collections$SynchronizedCollection;->mutex:Ljava/lang/Object; (greylist-max-o, reflection, denied)
+W/le.prayer_time(31389): Accessing hidden field Ljava/util/Collections$SynchronizedCollection;->c:Ljava/util/Collection; (greylist, reflection, allowed)
+W/le.prayer_time(31389): Accessing hidden method Ljava/util/Collections$SynchronizedSet;-><init>(Ljava/util/Set;Ljava/lang/Object;)V (greylist-max-o, reflection, denied)     
+W/le.prayer_time(31389): Accessing hidden method Ljava/util/Collections$SynchronizedCollection;-><init>(Ljava/util/Collection;Ljava/lang/Object;)V (greylist-max-o, reflection, denied)
+D/ProfileInstaller(31389): Installing profile for com.example.prayer_times
+I/le.prayer_time(31389): ProcessProfilingInfo new_methods=1935 is saved saved_to_disk=1 resolve_classes_delay=8000
+W/Gralloc3(31389): mapper 3.x is not supported
+The Flutter DevTools debugger and profiler on Redmi 8 is available at: http://127.0.0.1:9102?uri=http://127.0.0.1:59463/RPU6LraG4RA=/
+I/Timeline(31389): Timeline: Activity_launch_request time:796505688
+I/flutter (31389): Error getting location: Location services are still disabled after opening settings.
+I/flutter (31389): initLocation ended
+I/flutter (31389): passApiArgs in HomeScreen: null, null, null
+I/flutter (31389): Geocoding caught error: Software caused connection abort
+I/flutter (31389): Geocoding caught error: Software caused connection abort
+E/flutter (31389): [ERROR:flutter/runtime/dart_vm_initializer.cc(41)] Unhandled Exception: ClientException: Software caused connection abort, uri=https://api.opencagedata.com/geocode/v1/json?key=be1ee15c6f924f739f7b9c6defca2014&q=Cairo%2C+Egypt
+E/flutter (31389): #0      IOClient.send (package:http/src/io_client.dart:156:7)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #1      BaseClient._sendUnstreamed (package:http/src/base_client.dart:93:32)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #2      _withClient (package:http/http.dart:167:12)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #3      ApiService._fetchGeoApiData (package:prayer_times/services/api_service.dart:18:24)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #4      ApiService._forGeocoding (package:prayer_times/services/api_service.dart:42:12)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #5      ApiService._prepPrayerQueryPars (package:prayer_times/services/api_service.dart:72:35)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #6      ApiService.getPrayerMonth (package:prayer_times/services/api_service.dart:116:49)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #7      _FutureBuilderState._subscribe.<anonymous closure> (package:flutter/src/widgets/async.dart:638:31)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389):
+I/flutter (31389): Geocoding caught error: Software caused connection abort
+E/flutter (31389): [ERROR:flutter/runtime/dart_vm_initializer.cc(41)] Unhandled Exception: ClientException: Software caused connection abort, uri=https://api.opencagedata.com/geocode/v1/json?key=be1ee15c6f924f739f7b9c6defca2014&q=Cairo%2C+Egypt
+E/flutter (31389): #0      IOClient.send (package:http/src/io_client.dart:156:7)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #1      BaseClient._sendUnstreamed (package:http/src/base_client.dart:93:32)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #2      _withClient (package:http/http.dart:167:12)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #3      ApiService._fetchGeoApiData (package:prayer_times/services/api_service.dart:18:24)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #4      ApiService._forGeocoding (package:prayer_times/services/api_service.dart:42:12)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #5      ApiService._prepPrayerQueryPars (package:prayer_times/services/api_service.dart:72:35)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #6      ApiService.getPrayerDay (package:prayer_times/services/api_service.dart:108:35)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #7      LocalNotifsService.schedulePrayerNotifications (package:prayer_times/services/local_notifs_service.dart:129:29)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389):
+I/flutter (31389): Geocoding caught error: Software caused connection abort
+E/flutter (31389): [ERROR:flutter/runtime/dart_vm_initializer.cc(41)] Unhandled Exception: ClientException: Software caused connection abort, uri=https://api.opencagedata.com/geocode/v1/json?key=be1ee15c6f924f739f7b9c6defca2014&q=Cairo%2C+Egypt
+E/flutter (31389): #0      IOClient.send (package:http/src/io_client.dart:156:7)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #1      BaseClient._sendUnstreamed (package:http/src/base_client.dart:93:32)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #2      _withClient (package:http/http.dart:167:12)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #3      ApiService._fetchGeoApiData (package:prayer_times/services/api_service.dart:18:24)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #4      ApiService._forGeocoding (package:prayer_times/services/api_service.dart:42:12)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #5      ApiService._prepPrayerQueryPars (package:prayer_times/services/api_service.dart:72:35)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #6      ApiService.getPrayerYear (package:prayer_times/services/api_service.dart:124:35)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389): #7      _FutureBuilderState._subscribe.<anonymous closure> (package:flutter/src/widgets/async.dart:638:31)
+E/flutter (31389): <asynchronous suspension>
+E/flutter (31389):
+Lost connection to device.

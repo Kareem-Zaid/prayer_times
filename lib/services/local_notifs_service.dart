@@ -46,6 +46,8 @@ class LocalNotifsService {
   }
 
   Future<void> initLocalNotifs() async {
+    if (!Platform.isAndroid) return;
+
     WidgetsFlutterBinding.ensureInitialized();
     await _configureLocalTimeZone();
 
@@ -91,21 +93,11 @@ class LocalNotifsService {
     }
   }
 
-  tz.TZDateTime _getScheduledTime(String timeStr) {
-    final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-    final DateTime dateTime = timeStr.parseTime();
-    final int hours = dateTime.hour;
-    final int mins = dateTime.minute;
-    final tz.TZDateTime scheduledDate =
-        tz.TZDateTime(tz.local, now.year, now.month, now.day, hours, mins);
-    return scheduledDate;
-  }
-
-  // Schedule notification to appear in 5 seconds based on local time zone
-  Future<void> zonedScheduleNotification(
-      int id, String title, String body, String timeStr) async {
+  // Schedule notification to appear at a specific date and time
+  Future<void> _zonedScheduleNotification(
+      int id, String title, String body, tz.TZDateTime dateTime) async {
     await _flutterLocalNotificationsPlugin.zonedSchedule(
-      id, title, body, _getScheduledTime(timeStr), _notificationDetails,
+      id, title, body, dateTime, _notificationDetails,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
@@ -115,46 +107,80 @@ class LocalNotifsService {
   }
 
   Future<void> cancelAllNotifications() async {
+    if (!Platform.isAndroid) return;
+
     await _flutterLocalNotificationsPlugin.cancelAll();
+    debugPrint('Notifications canceled');
+    final pendingNotifs =
+        await _flutterLocalNotificationsPlugin.pendingNotificationRequests();
+    debugPrint('Pending notifs count after canceling: ${pendingNotifs.length}');
   }
 
-  void schedulePrayerNotifications(UserSettings settings) async {
+  Future<void> schedulePrayerNotifications(UserSettings settings) async {
+    if (!Platform.isAndroid) return;
+
     // Reschedule notifications only if on
     if (!settings.isNotifsOn) return;
 
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
     final List<Future<void>> futures = [];
 
+    bool errorOccurred = false; // Flag to track if an error has occurred
+
     // Loop a week starting from today
     for (var i = 0; i < 7; i++) {
       final tz.TZDateTime date = now.add(Duration(days: i));
+      final String monthStr = date.month.toString().padLeft(2, '0');
+      final String dayStr = date.day.toString().padLeft(2, '0');
 
       // Assign API request to get PrayerDay
-      PrayerDay prayerDay = await ApiService.getPrayerDay(
-        date: date,
-        apiPars: settings,
-      );
+      List<Prayer> prayerList = [];
+      try {
+        final PrayerDay prayerDay =
+            await ApiService.getPrayerDay(date: date, apiPars: settings);
 
-      // Get prayers list of each day and remove 'sunrise'
-      final prayerList = prayerDay.datum.prayers.prayerList..removeAt(1);
+        // Get prayers list of each day and remove 'sunrise'
+        prayerList = prayerDay.datum.prayers.prayerList..removeAt(1);
+      } on Exception catch (e) {
+        if (!errorOccurred) {
+          debugPrint('getPrayerDay@Notifications caught error: $e');
+          errorOccurred = true; // Set to true to prevent further logging
+        }
+      }
 
       // Loop through prayers of the day and add to futures
       for (int i = 0; i < prayerList.length; i++) {
-        final Prayer prayer = prayerList[i];
-        final int id = int.parse('${date.year}${date.month}${date.day}$i');
+        final int id = int.parse('${date.year}$monthStr$dayStr$i');
+        final pendingNotifs = await _flutterLocalNotificationsPlugin
+            .pendingNotificationRequests();
+        bool isPreScheduled = pendingNotifs.any((notif) => id == notif.id);
+        if (!isPreScheduled) {
+          final Prayer prayer = prayerList[i];
+          final DateTime prayerTime = prayer.time.parseTime();
+          final int hours = prayerTime.hour;
+          final int mins = prayerTime.minute;
+          final String? city = settings.city?.name ?? settings.cityName;
+          final country = settings.country?.name ?? settings.countryName;
 
-        futures.add(
-          zonedScheduleNotification(
-            id,
-            'صلاة ${prayer.name}',
-            'حان الآن موعد صلاة ${prayer.name} بتوقيت ${settings.country?.name}، ${settings.city?.name}',
-            prayer.time,
-          ),
-        );
+          futures.add(
+            _zonedScheduleNotification(
+              id,
+              'صلاة ${prayer.name} ($id)',
+              'حان الآن موعد صلاة ${prayer.name} بتوقيت $city - $country',
+              // Set scheduled notification date and time
+              tz.TZDateTime(
+                  tz.local, date.year, date.month, date.day, hours, mins),
+            ),
+          );
+        }
       }
     }
 
+    debugPrint('Rescheduled notification futures count: ${futures.length}');
     await Future.wait(futures);
     debugPrint('Done scheduling notifications for a week starting from $now');
+    final pendingNotifs =
+        await _flutterLocalNotificationsPlugin.pendingNotificationRequests();
+    debugPrint('Pending notifs count for a week: ${pendingNotifs.length}');
   }
 }

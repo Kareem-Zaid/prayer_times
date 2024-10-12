@@ -44,7 +44,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // debugPrint('MyApp Height: ${MediaQuery.sizeOf(context).height}');
     return MaterialApp(
       scrollBehavior: MyCustomScrollBehavior(),
       localizationsDelegates: const [
@@ -82,11 +81,12 @@ class MyApp extends StatelessWidget {
 // v1.0.0: Do some encapsulation and abstaction {240911}
 // v1.0.0: Add calculation method class in api_serivce.dart, and picker & parameters in settings {240912}
 // v1.0.0: Add Time Format (24h/12h) in settings {240921}
-// v1.0.0: Add yearly tab and logic {240927}
-// v1.0.0: Add monthly tab and logic {240929}
+// v1.0.0: Add yearly tab and logic with page jumping {240927}
+// v1.0.0: Add monthly tab and logic with scrolling to selected date {240929}
 // v1.0.0: Add "Refresh" button to reload in case of error occured {241005}
 // v1.0.0: Add local notifications {241007}
-// v1.0.0: Set city and country with current location {241007}
+// v1.0.0: Set city and country with current location {241011}
+// v1.0.0: Add error handling logic to all API requests {241012}
 // v1.1.0: Cache settings (data persistence)
 // v1.2.0: Add a splash screen, then initially ask for location before proceeding to home (InitialScreen extends SettingsScreen, and pass ApiPars class to HomeScreen currentApiPars [currentApiPars = widget.initApiPars])
 // v1.2.1: Add automatic refresh to next prayer every while (e.g. 30 mins, 1 min)

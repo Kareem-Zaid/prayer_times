@@ -15,41 +15,38 @@ class YearlyScreen extends StatefulWidget {
 }
 
 class YearlyScreenState extends State<YearlyScreen> {
-  static late Future<PrayerYear> future;
-  DateTime _focusedDay = DateTime.now();
+  static late Future<PrayerYear> _future;
+  static DateTime _focusedDay = DateTime.now();
   late DateTime _selectedDay;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   Map<String, List<Datum>>? prayerYear;
-  Map<DateTime, List<Prayer>> prayerPerDay = {};
+  static final Map<DateTime, List<Prayer>> _prayerPerDay = {};
   late final ValueNotifier<List<Prayer>> _selectedPrayers;
 
-  Future<Map<DateTime, List<Prayer>>> assignPrayerYear() async {
+  static Future<Map<DateTime, List<Prayer>>> assignPrayerYear(
+      UserSettings settings) async {
     // API call + Map prayers per day (Create a yearly prayer map) + Assign prayer list as per selected day
-    future =
-        ApiService.getPrayerYear(date: _focusedDay, apiPars: widget.settings);
-    final PrayerYear prayerYear = await future;
-    final prayerYearData = prayerYear.yearData;
-    for (var monthStr in prayerYearData.keys) {
-      for (var dayData in prayerYearData[monthStr]!) {
-        final int month = int.parse(monthStr);
-        final int day = int.parse(dayData.date.gregorian.day);
-        final date = DateTime(_focusedDay.year, month, day);
-        prayerPerDay[date] = dayData.prayers.prayerList;
+    try {
+      _future = ApiService.getPrayerYear(date: _focusedDay, apiPars: settings);
+      final PrayerYear prayerYear = await _future;
+      final prayerYearData = prayerYear.yearData;
+      for (var monthStr in prayerYearData.keys) {
+        for (var dayData in prayerYearData[monthStr]!) {
+          final int month = int.parse(monthStr);
+          final int day = int.parse(dayData.date.gregorian.day);
+          final date = DateTime(_focusedDay.year, month, day);
+          _prayerPerDay[date] = dayData.prayers.prayerList;
+        }
       }
-    }
-    return prayerPerDay;
-  }
-
-  @override
-  void didUpdateWidget(covariant YearlyScreen oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.settings.city != oldWidget.settings.city ||
-        widget.settings.country != oldWidget.settings.country ||
-        widget.settings.method != oldWidget.settings.method) {
-      assignPrayerYear().then((pPD) {
-        _selectedPrayers.value = pPD[DateUtils.dateOnly(_selectedDay)]!;
+    } on Exception catch (e) {
+      debugPrint('getPrayerYear caught error: $e');
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ScaffoldMessenger.of(settings.context).showSnackBar(const SnackBar(
+            content: Text('''لم يتم تحميل بيانات مواقيت الصلاة السنوية..
+يرجى التأكد من الاتصال بالإنترنت وتحديث الصفحة''')));
       });
     }
+    return _prayerPerDay;
   }
 
   @override
@@ -62,24 +59,28 @@ class YearlyScreenState extends State<YearlyScreen> {
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
-    assignPrayerYear().then((pPD) {
-      _selectedPrayers = ValueNotifier(pPD[DateUtils.dateOnly(_selectedDay)]!);
+    assignPrayerYear(widget.settings).then((pPD) {
+      _selectedPrayers =
+          ValueNotifier(pPD[DateUtils.dateOnly(_selectedDay)] ?? []);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: future,
+      future: _future,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator()); // Loading
         } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}')); // Error
+          return const Center(child: Text('''خطأ في تحميل البيانات...
+يرجى التأكد من الاتصال بالإنترنت''', textAlign: TextAlign.center)); // Error
         } else if (!snapshot.hasData) {
           return const Center(child: Text('No data received.')); // No data
         } else if (snapshot.hasData) {
           prayerYear = snapshot.data!.yearData;
+          _selectedPrayers.value =
+              _prayerPerDay[DateUtils.dateOnly(_selectedDay)]!;
           return Column(
             children: [
               TableCalendar(
@@ -97,9 +98,11 @@ class YearlyScreenState extends State<YearlyScreen> {
                             !isSameDay(picked, _selectedDay)) {
                           bool isSameYear = _focusedDay.year == picked.year;
                           setState(() => _focusedDay = _selectedDay = picked);
-                          !isSameYear ? await assignPrayerYear() : null;
+                          !isSameYear
+                              ? await assignPrayerYear(widget.settings)
+                              : null;
                           _selectedPrayers.value =
-                              prayerPerDay[DateUtils.dateOnly(_selectedDay)]!;
+                              _prayerPerDay[DateUtils.dateOnly(_selectedDay)]!;
                         }
                       },
                       child: Text(
@@ -136,15 +139,17 @@ class YearlyScreenState extends State<YearlyScreen> {
                       _selectedDay = selectedDay;
                       _focusedDay = focusedDay;
                     });
-                    !isSameYear ? await assignPrayerYear() : null;
+                    !isSameYear
+                        ? await assignPrayerYear(widget.settings)
+                        : null;
                     _selectedPrayers.value =
-                        prayerPerDay[DateUtils.dateOnly(selectedDay)]!;
+                        _prayerPerDay[DateUtils.dateOnly(selectedDay)]!;
                   }
                 },
                 onPageChanged: (focusedDay) async {
                   bool isSameYear = _selectedDay.year == focusedDay.year;
                   _focusedDay = focusedDay;
-                  !isSameYear ? await assignPrayerYear() : null;
+                  !isSameYear ? await assignPrayerYear(widget.settings) : null;
                 },
                 calendarFormat: _calendarFormat,
                 onFormatChanged: (cF) => setState(() => _calendarFormat = cF),

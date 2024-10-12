@@ -17,46 +17,39 @@ class DailyScreen extends StatefulWidget {
 }
 
 class DailyScreenState extends State<DailyScreen> {
-  static late Future<PrayerDay> future;
-  DateTime focusedDate = DateTime.now();
+  static late Future<PrayerDay> _future;
+  static DateTime _focusedDate = DateTime.now();
   Prayer? nextPrayer;
 
-// Future<PrayerDay> get _future async => ApiService.getPrayerDay(date: focusedDate, apiPars: widget.apiPars);
-// Using getter fails as it keeps rebuilding unnecessarily (on each setState of TabsScreen even)
-
-  void assignPrayerDay() {
-    future = ApiService.getPrayerDay(
-      date: focusedDate,
-      apiPars: widget.settings,
-    );
-  }
-
-  @override
-  void didUpdateWidget(covariant DailyScreen oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    // debugPrint('FutBuilder old-widget City: ${oldWidget.apiPars.city?.nameEn}');
-    // debugPrint('FutB current-widget City: ${widget.apiPars.city?.nameEn}');
-    if (widget.settings.city != oldWidget.settings.city ||
-        widget.settings.country != oldWidget.settings.country ||
-        widget.settings.method != oldWidget.settings.method) assignPrayerDay();
-    // No need to add 'is24H' comparison/condition to the expression as its effect doesn't require a new API call
+  static void assignPrayerDay(UserSettings settings) {
+    try {
+      _future = ApiService.getPrayerDay(date: _focusedDate, apiPars: settings);
+    } on Exception catch (e) {
+      debugPrint('getPrayerDay caught error: $e');
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ScaffoldMessenger.of(settings.context).showSnackBar(const SnackBar(
+            content: Text('''لم يتم تحميل بيانات مواقيت الصلاة اليومية..
+يرجى التأكد من الاتصال بالإنترنت وتحديث الصفحة''')));
+      });
+    }
   }
 
   @override
   void initState() {
-    assignPrayerDay();
+    assignPrayerDay(widget.settings);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: future,
+      future: _future,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator()); // Loading
         } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}')); // Error
+          return const Center(child: Text('''خطأ في تحميل البيانات...
+يرجى التأكد من الاتصال بالإنترنت''', textAlign: TextAlign.center)); // Error
         } else if (!snapshot.hasData) {
           return const Center(child: Text('No data received.')); // No data
         } else if (snapshot.hasData) {
@@ -64,7 +57,7 @@ class DailyScreenState extends State<DailyScreen> {
           final hijri = snapshot.data!.datum.date.hijri;
           nextPrayer = NextPrayerService.getNextPrayer(
             prayerList: prayerList,
-            date: focusedDate,
+            date: _focusedDate,
             nextPrayer: nextPrayer,
           );
           return Padding(
@@ -92,20 +85,21 @@ class DailyScreenState extends State<DailyScreen> {
                               onPressed: () async {
                                 final pickedDate = await showDatePicker(
                                   context: context,
-                                  initialDate: focusedDate,
+                                  initialDate: _focusedDate,
                                   firstDate: DateTime.now(),
                                   lastDate: DateTime(DateTime.now().year + 62),
                                 );
                                 if (pickedDate != null) {
                                   setState(() {
-                                    focusedDate = pickedDate;
-                                    assignPrayerDay();
+                                    _focusedDate = pickedDate;
+                                    assignPrayerDay(widget.settings);
                                   });
                                 }
                               },
                               icon: const Icon(Icons.calendar_month),
                             ),
-                            Text(DateHelper.formatDate(focusedDate).toArNums()),
+                            Text(
+                                DateHelper.formatDate(_focusedDate).toArNums()),
                           ],
                         ),
                       ],

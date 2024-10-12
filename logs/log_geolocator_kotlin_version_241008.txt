@@ -1,0 +1,56 @@
+┌─────────────────────────────────────────────────────────┐
+│ A new version of Flutter is available!                  │
+│                                                         │
+│ To update to the latest version, run "flutter upgrade". │
+└─────────────────────────────────────────────────────────┘
+Launching lib\main.dart on Redmi 8 in debug mode...
+The Flutter CLI developer tool uses Google Analytics to report usage and diagnostic
+data along with package dependencies, and crash reporting to send basic crash
+reports. This data is used to help improve the Dart platform, Flutter framework,
+and related tools.
+
+Telemetry is not sent on the very first run. To disable reporting of telemetry,
+run this terminal command:
+
+    flutter --disable-analytics
+
+If you opt out of telemetry, an opt-out event will be sent, and then no further
+information will be sent. This data is collected in accordance with the Google
+Privacy Policy (https://policies.google.com/privacy).
+
+Please note that analytics reporting was already disabled, and will continue to be disabled.
+
+C:\Users\KZ\.gradle\caches\transforms-3\2d1662977f4de7b0ee6abb60e24dbe11\transformed\jetified-kotlin-stdlib-common-1.9.0.jar!\META-INF\kotlin-stdlib-common.kotlin_module: error: module was compiled with an incompatible version of Kotlin. The binary version of its metadata is 1.9.0, expected version is 1.7.1.
+C:\Users\KZ\.gradle\caches\transforms-3\88b3c3b6185cceadc66a0392386956f9\transformed\jetified-kotlin-stdlib-1.9.0.jar!\META-INF\kotlin-stdlib-jdk7.kotlin_module: error: module was compiled with an incompatible version of Kotlin. The binary version of its metadata is 1.9.0, expected version is 1.7.1.
+C:\Users\KZ\.gradle\caches\transforms-3\88b3c3b6185cceadc66a0392386956f9\transformed\jetified-kotlin-stdlib-1.9.0.jar!\META-INF\kotlin-stdlib-jdk8.kotlin_module: error: module was compiled with an incompatible version of Kotlin. The binary version of its metadata is 1.9.0, expected version is 1.7.1.
+C:\Users\KZ\.gradle\caches\transforms-3\88b3c3b6185cceadc66a0392386956f9\transformed\jetified-kotlin-stdlib-1.9.0.jar!\META-INF\kotlin-stdlib.kotlin_module: error: module was compiled with an incompatible version of 
+Kotlin. The binary version of its metadata is 1.9.0, expected version is 1.7.1.
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 10m 5s
+Running Gradle task 'assembleDebug'...                            ٦٦١٫٦s
+
+┌─ Flutter Fix ──────────────────────────────────────────────────────────────────────────────────────────┐
+│ [!] Your project requires a newer version of the Kotlin Gradle plugin.                                 │
+│ Find the latest version on https://kotlinlang.org/docs/releases.html#release-details, then update the  │
+│ version number of the plugin with id "org.jetbrains.kotlin.android" in the plugins block of            │
+│ D:\Projects\Flutter\prayer_times\android\settings.gradle.                                              │
+│                                                                                                        │
+│ Alternatively (if your project was created before Flutter 3.19), update                                │
+│ D:\Projects\Flutter\prayer_times\android\build.gradle                                                  │
+│ ext.kotlin_version = '<latest-version>'                                                                │
+└────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+Error: Gradle task assembleDebug failed with exit code 1

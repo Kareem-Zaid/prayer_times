@@ -1,94 +1,118 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:prayer_times/models/user_settings.dart';
 import 'package:prayer_times/screens/monthly_screen.dart';
 import 'package:prayer_times/screens/yearly_screen.dart';
 import 'package:prayer_times/screens/daily_screen.dart';
 import 'package:prayer_times/screens/settings_screen.dart';
-import 'package:prayer_times/services/api_service.dart';
 import 'package:prayer_times/services/local_notifs_service.dart';
+import 'package:prayer_times/services/location_service.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
-  // static const String routeName = '/';
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+class _TabsScreenState extends State<TabsScreen> with WidgetsBindingObserver {
   int _counter = 0;
-  UserSettings currentSettings = UserSettings();
+  late UserSettings currentSettings;
+  List<Map<String, Object>> tabs = [];
   int _selTabIndex = 0;
   final LocalNotifsService _localNotifs = LocalNotifsService();
+  final LocationService _locationService = LocationService();
+  bool _isLoading = true;
+  late bool _locationEnabled;
 
-  void callbackApiPars(UserSettings settings) {
-    setState(() => currentSettings = settings);
-    debugPrint(
-        'passApiArgs in HomeScreen: ${settings.country?.name}, ${settings.city?.name}, ${settings.method?.name}');
+  Future<void> initLocationAndNotifs() async {
+    if (currentSettings.lat == null || currentSettings.lng == null) {
+      try {
+        await _locationService.initLocation(currentSettings);
+      } catch (e) {
+        if (mounted) {
+          // Update the UI to inform the user about the error
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Error getting location: $e")));
+        }
+      }
+      _locationEnabled = await Geolocator.isLocationServiceEnabled();
+      if (_locationEnabled) {
+        await _localNotifs.cancelAllNotifications();
+        _localNotifs.schedulePrayerNotifications(currentSettings);
+        setState(() => _isLoading = false);
+      }
+    }
   }
 
-  void _refreshCurrentTab() {
+  Future<void> _refreshCurrentTab() async {
+    await initLocationAndNotifs();
     setState(() {
       if (_selTabIndex == 0) {
-        DailyScreenState.future = ApiService.getPrayerDay(
-            date: DateTime.now(), apiPars: currentSettings);
+        DailyScreenState.assignPrayerDay(currentSettings);
       } else if (_selTabIndex == 1) {
-        MonthlyScreenState.future = ApiService.getPrayerMonth(
-            date: DateTime.now(), apiPars: currentSettings);
+        MonthlyScreenState.assignPrayerMonth(currentSettings);
       } else if (_selTabIndex == 2) {
-        YearlyScreenState.future = ApiService.getPrayerYear(
-            date: DateTime.now(), apiPars: currentSettings);
+        YearlyScreenState.assignPrayerYear(currentSettings);
       }
     });
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.resumed &&
+        !currentSettings.isLocationHandled) {
+      // First run done flag
+      currentSettings.isLocationHandled = true;
+
+      await initLocationAndNotifs();
+
+      _locationEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!_locationEnabled && currentSettings.lat == null && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('جاري عرض مواقيت الصلاة طبقا للموقع الافتراضي: '
+              '${currentSettings.cityName} - ${currentSettings.countryName}'),
+        ));
+        _localNotifs.schedulePrayerNotifications(currentSettings);
+        setState(() => _isLoading = false);
+      }
+    }
+  }
+
+  @override
   void initState() {
     super.initState();
-    _localNotifs.schedulePrayerNotifications(currentSettings);
-    debugPrint('TabScreen initialized');
+    currentSettings = UserSettings(context: context);
+    WidgetsBinding.instance.addObserver(this);
+    initLocationAndNotifs();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    debugPaintSizeEnabled = false; // Show layout gridlines
-
-    List<Map<String, Object>> tabs = [
+    debugPrint('passApiArgs in HomeScreen: ${currentSettings.country?.name}, '
+        '${currentSettings.city?.name}, ${currentSettings.method?.name}');
+    tabs = [
       {
-        'Screen': DailyScreen(
-          settings: UserSettings(
-            country: currentSettings.country,
-            city: currentSettings.city,
-            method: currentSettings.method,
-            is24H: currentSettings.is24H,
-          ),
-        ),
+        'Screen': DailyScreen(settings: currentSettings),
         'Title': 'مواقيت الصلاة',
       },
       {
-        'Screen': MonthlyScreen(
-          settings: UserSettings(
-            country: currentSettings.country,
-            city: currentSettings.city,
-            method: currentSettings.method,
-            is24H: currentSettings.is24H,
-          ),
-        ),
+        'Screen': MonthlyScreen(settings: currentSettings),
         'Title': 'مواقيت الصلاة خلال الشهر'
       },
       {
-        'Screen': YearlyScreen(
-          settings: UserSettings(
-            country: currentSettings.country,
-            city: currentSettings.city,
-            method: currentSettings.method,
-            is24H: currentSettings.is24H,
-          ),
-        ),
+        'Screen': YearlyScreen(settings: currentSettings),
         'Title': 'مواقيت الصلاة خلال العام'
       },
     ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(tabs[_selTabIndex]['Title'] as String),
@@ -99,22 +123,22 @@ class _TabsScreenState extends State<TabsScreen> {
           ),
           IconButton(
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => SettingsScreen(
-                  callbackSettings: callbackApiPars,
-                  passedSettings: currentSettings,
-                ),
-              ));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(
+                      builder: (context) =>
+                          SettingsScreen(passedSettings: currentSettings)))
+                  .then((_) => setState(() {}));
             },
             icon: const Icon(Icons.settings),
           ),
         ],
       ),
-      body: IndexedStack(
-        // This enables the widget to keep the state of the inactive tabs intact while only switching the visible tab, which prevents 'DailyScreen' from rebuilding unnecessarily.
-        index: _selTabIndex,
-        children: tabs.map((tab) => tab['Screen'] as Widget).toList(),
-      ),
+      body: _isLoading
+          ? const LinearProgressIndicator()
+          : IndexedStack(
+              index: _selTabIndex,
+              children: tabs.map((tab) => tab['Screen'] as Widget).toList(),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: _selTabIndex == 0
           ? Stack(
@@ -155,7 +179,6 @@ class _TabsScreenState extends State<TabsScreen> {
         currentIndex: _selTabIndex,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         selectedItemColor: Theme.of(context).colorScheme.onSurface,
-        // selectedIconTheme: IconThemeData(color: Colors.amber),
         onTap: (ndx) => setState(() => _selTabIndex = ndx),
         items: const [
           BottomNavigationBarItem(

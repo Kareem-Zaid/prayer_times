@@ -1,11 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:uni_country_city_picker/uni_country_city_picker.dart';
 
 class UserSettings {
   Country? country;
   City? city;
   Method? method;
-  bool is24H;
-  bool isNotifsOn;
+  bool is24H, isNotifsOn, isLocationHandled;
+  double? lat;
+  double? lng;
+  String? countryName, cityName;
+  BuildContext context;
 
   UserSettings({
     this.country,
@@ -13,6 +17,12 @@ class UserSettings {
     this.method,
     this.is24H = false,
     this.isNotifsOn = true,
+    this.isLocationHandled = false,
+    this.lat,
+    this.lng,
+    this.countryName,
+    this.cityName,
+    required this.context,
   });
 }
 
