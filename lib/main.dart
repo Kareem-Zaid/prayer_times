@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
 // v1.0.0: Set city and country with current location {241011}
 // v1.0.0: Add error handling logic to all API requests {241012}
 // v1.1.0: Cache settings (data persistence)
-// v1.2.0: Enable switching screens by swiping
+// v1.2.0: Enable switching between screens by swiping
 // v1.2.0: Add a splash screen, then initially ask for location either automatically or manually before proceeding to home (InitialScreen extends SettingsScreen, and pass ApiPars class to HomeScreen currentApiPars [currentApiPars = widget.initApiPars])
 // v1.2.1: Add automatic refresh to next prayer every while (e.g. 30 mins, 1 min)
 // v1.2.2: Try geocoding package instead of the API endpoint (Backup lib folder in ".up" before proceeding)
