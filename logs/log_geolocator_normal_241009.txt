@@ -1,0 +1,177 @@
+Errors were stored into D:\Projects\Flutter\prayer_times\android\.gradle\kotlin\errors\errors-1728434263758.log
+Running Gradle task 'assembleDebug'...                            ٤٢٢٫٩s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...          ١٣٫٣s
+D/FlutterGeolocator(30939): Attaching Geolocator to activity
+D/FlutterGeolocator(30939): Creating service.
+D/FlutterGeolocator(30939): Binding to location service.
+D/FlutterGeolocator(30939): Geolocator foreground service connected
+D/FlutterGeolocator(30939): Initializing Geolocator services
+D/FlutterGeolocator(30939): Flutter engine connected. Connected engine count 1
+I/flutter (30939): determinePosition started
+I/flutter (30939): TabScreen initialized
+W/le.prayer_time(30939): Accessing hidden field Ljava/util/Collections$SynchronizedCollection;->mutex:Ljava/lang/Object; (greylist-max-o, reflection, denied)
+W/le.prayer_time(30939): Accessing hidden field Ljava/util/Collections$SynchronizedCollection;->c:Ljava/util/Collection; (greylist, reflection, allowed)
+W/le.prayer_time(30939): Accessing hidden method Ljava/util/Collections$SynchronizedSet;-><init>(Ljava/util/Set;Ljava/lang/Object;)V (greylist-max-o, reflection, denied)
+W/le.prayer_time(30939): Accessing hidden method Ljava/util/Collections$SynchronizedCollection;-><init>(Ljava/util/Collection;Ljava/lang/Object;)V (greylist-max-o, reflection, denied)
+I/le.prayer_time(30939): ProcessProfilingInfo new_methods=1898 is saved saved_to_disk=1 resolve_classes_delay=8000
+D/ProfileInstaller(30939): Installing profile for com.example.prayer_times
+W/Gralloc3(30939): mapper 3.x is not supported
+I/flutter (30939): Error getting location: Location services are disabled.
+I/flutter (30939): currentSettings.lat: null
+I/flutter (30939): currentSettings.lng: null
+I/flutter (30939): determinePosition started
+I/flutter (30939): determinePosition started
+I/flutter (30939): determinePosition started
+I/flutter (30939): determinePosition started
+W/le.prayer_time(30939): Accessing hidden method Lsun/misc/Unsafe;->compareAndSwapInt(Ljava/lang/Object;JII)Z (greylist, linking, allowed)
+I/flutter (30939): determinePosition started
+Syncing files to device Redmi 8...                                 ٤١٢ms
+
+Flutter run key commands.
+r Hot reload.
+R Hot restart.
+h List all available interactive commands.
+d Detach (terminate "flutter run" but leave application running).
+c Clear the screen
+q Quit (terminate the application on the device).
+
+A Dart VM Service on Redmi 8 is available at: http://127.0.0.1:63444/gzKh7WaiDAQ=/
+The Flutter DevTools debugger and profiler on Redmi 8 is available at: http://127.0.0.1:9101?uri=http://127.0.0.1:63444/gzKh7WaiDAQ=/
+I/flutter (30939): determinePosition started
+I/flutter (30939): determinePosition started
+I/flutter (30939): determinePosition started
+I/flutter (30939): determinePosition started
+I/flutter (30939): determinePosition started
+I/flutter (30939): Done scheduling notifications for a week starting from 2024-10-09 03:42:41.449651+0300
+I/flutter (30939): Pending notifs count for a week: 35
+
+W/Looper  (30939): Slow Looper main: Long Msg: seq=595 plan=03:52:32.010  late=63ms wall=3035ms running=0ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver
+W/Looper  (30939): Slow Looper main: Activity com.example.prayer_times/.MainActivity is 3139ms late (wall=0ms running=0ms ClientTransaction{ callbacks=[android.app.servertransaction.TopResumedActivityChangeItem] }) because of 3 msg, msg 1 took 54ms (seq=593 late=1ms h=android.app.ActivityThread$H w=137), msg 3 took 3035ms (seq=595 late=63ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver)
+W/Looper  (30939): Slow Looper main: Activity com.example.prayer_times/.MainActivity is 3129ms late (wall=26ms running=0ms ClientTransaction{ lifecycleRequest=android.app.servertransaction.ResumeActivityItem }) because of 4 msg, msg 1 took 54ms (seq=593 late=1ms h=android.app.ActivityThread$H w=137), msg 3 took 3035ms (seq=595 late=63ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver)
+Performing hot restart...                                               
+Restarted application in ٦٬٦٢٢ms.
+I/flutter (30939): determinePosition started
+I/flutter (30939): TabScreen initialized
+I/Timeline(30939): Timeline: Activity_launch_request time:713780565
+I/flutter (30939): Error getting location: Location services are still disabled after opening settings.
+I/flutter (30939): currentSettings.lat: null
+I/flutter (30939): currentSettings.lng: null
+I/flutter (30939): determinePosition started
+I/Timeline(30939): Timeline: Activity_launch_request time:713781214
+I/flutter (30939): determinePosition started
+I/flutter (30939): determinePosition started
+I/flutter (30939): determinePosition started
+I/Timeline(30939): Timeline: Activity_launch_request time:713782223
+I/Timeline(30939): Timeline: Activity_launch_request time:713782234
+I/Timeline(30939): Timeline: Activity_launch_request time:713782250
+I/flutter (30939): determinePosition started
+I/Timeline(30939): Timeline: Activity_launch_request time:713785114
+Lost connection to device.
+The Flutter CLI developer tool uses Google Analytics to report usage and diagnostic
+data along with package dependencies, and crash reporting to send basic crash
+reports. This data is used to help improve the Dart platform, Flutter framework,
+and related tools.
+
+Telemetry is not sent on the very first run. To disable reporting of telemetry,
+
+    flutter --disable-analytics
+
+If you opt out of telemetry, an opt-out event will be sent, and then no further
+information will be sent. This data is collected in accordance with the Google
+Privacy Policy (https://policies.google.com/privacy).
+
+Please note that analytics reporting was already disabled, and will continue to be disabled.
+
+PS D:\Projects\Flutter\prayer_times> flutter run
+Launching lib\main.dart on Redmi 8 in debug mode...
+I/flutter ( 8288): determinePosition started
+I/flutter ( 8288): determinePosition ended
+I/flutter ( 8288): lat: 16.8944014; lng: 42.5702054
+I/flutter ( 8288): determinePosition started
+I/flutter ( 8288): determinePosition ended
+I/flutter ( 8288): lat: 16.8944014; lng: 42.5702054
+I/flutter ( 8288): Done scheduling notifications for a week starting from 2024-10-09 03:53:19.080642+0300
+I/flutter ( 8288): Pending notifs count for a week: 35
+The Flutter CLI developer tool uses Google Analytics to report usage and diagnostic
+data along with package dependencies, and crash reporting to send basic crash
+reports. This data is used to help improve the Dart platform, Flutter framework,
+and related tools.
+
+Telemetry is not sent on the very first run. To disable reporting of telemetry,
+run this terminal command:
+
+    flutter --disable-analytics
+
+If you opt out of telemetry, an opt-out event will be sent, and then no further
+information will be sent. This data is collected in accordance with the Google
+Privacy Policy (https://policies.google.com/privacy).
+
+Please note that analytics reporting was already disabled, and will continue to be disabled.
+
+Running Gradle task 'assembleDebug'...                             ٨٦٫٨s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...          ١٢٫٨s
+D/FlutterGeolocator( 9431): Attaching Geolocator to activity
+D/FlutterGeolocator( 9431): Creating service.
+D/FlutterGeolocator( 9431): Binding to location service.
+D/FlutterGeolocator( 9431): Geolocator foreground service connected
+D/FlutterGeolocator( 9431): Initializing Geolocator services
+D/FlutterGeolocator( 9431): Flutter engine connected. Connected engine count 1
+Syncing files to device Redmi 8...                                 ٩١٠ms
+
+Flutter run key commands.
+r Hot reload.
+R Hot restart.
+h List all available interactive commands.
+d Detach (terminate "flutter run" but leave application running).
+c Clear the screen
+q Quit (terminate the application on the device).
+
+A Dart VM Service on Redmi 8 is available at: http://127.0.0.1:56272/gUCyclQUGSY=/
+I/flutter ( 9431): determinePosition started
+I/flutter ( 9431): TabScreen initialized
+W/le.prayer_time( 9431): Accessing hidden field Ljava/util/Collections$SynchronizedCollection;->mutex:Ljava/lang/Object; (greylist-max-o, reflection, denied)
+W/le.prayer_time( 9431): Accessing hidden field Ljava/util/Collections$SynchronizedCollection;->c:Ljava/util/Collection; (greylist, reflection, allowed)
+W/le.prayer_time( 9431): Accessing hidden method Ljava/util/Collections$SynchronizedSet;-><init>(Ljava/util/Set;Ljava/lang/Object;)V (greylist-max-o, reflection, denied)
+W/le.prayer_time( 9431): Accessing hidden method Ljava/util/Collections$SynchronizedCollection;-><init>(Ljava/util/Collection;Ljava/lang/Object;)V (greylist-max-o, reflection, denied)
+D/ProfileInstaller( 9431): Installing profile for com.example.prayer_times
+I/le.prayer_time( 9431): ProcessProfilingInfo new_methods=1946 is saved saved_to_disk=1 resolve_classes_delay=8000
+W/Gralloc3( 9431): mapper 3.x is not supported
+The Flutter DevTools debugger and profiler on Redmi 8 is available at: http://127.0.0.1:9101?uri=http://127.0.0.1:56272/gUCyclQUGSY=/
+I/flutter ( 9431): determinePosition ended
+I/flutter ( 9431): currentSettings.lat: 16.8944129
+I/flutter ( 9431): currentSettings.lng: 42.5702057
+I/flutter ( 9431): determinePosition started
+I/flutter ( 9431): determinePosition started
+I/chatty  ( 9431): uid=10698(com.example.prayer_times) 1.ui identical 1 line
+I/flutter ( 9431): determinePosition started
+I/flutter ( 9431): determinePosition ended
+I/chatty  ( 9431): uid=10698(com.example.prayer_times) 1.ui identical 2 lines
+I/flutter ( 9431): determinePosition ended
+I/flutter ( 9431): lat: 16.8944129; lng: 42.5702057
+I/flutter ( 9431): lat: 16.8944129; lng: 42.5702057
+I/chatty  ( 9431): uid=10698(com.example.prayer_times) 1.ui identical 1 line
+I/flutter ( 9431): lat: 16.8944129; lng: 42.5702057
+I/flutter ( 9431): determinePosition started
+I/flutter ( 9431): determinePosition ended
+I/flutter ( 9431): lat: 16.8944188; lng: 42.5702034
+I/flutter ( 9431): determinePosition started
+I/le.prayer_time( 9431): Background concurrent copying GC freed 62557(3107KB) AllocSpace objects, 1(20KB) LOS objects, 83% free, 2430KB/14MB, paused 8.895ms total 46.280ms
+I/flutter ( 9431): determinePosition ended
+I/flutter ( 9431): lat: 16.8944188; lng: 42.5702034
+I/flutter ( 9431): determinePosition started
+I/flutter ( 9431): determinePosition ended
+I/flutter ( 9431): lat: 16.8944188; lng: 42.5702034
+I/flutter ( 9431): determinePosition started
+I/flutter ( 9431): determinePosition ended
+I/flutter ( 9431): lat: 16.8944188; lng: 42.5702034
+I/flutter ( 9431): determinePosition started
+I/flutter ( 9431): determinePosition ended
+I/flutter ( 9431): lat: 16.8944188; lng: 42.5702034
+I/flutter ( 9431): determinePosition started
+I/flutter ( 9431): determinePosition ended
+I/flutter ( 9431): lat: 16.8944109; lng: 42.570201
+I/flutter ( 9431): Done scheduling notifications for a week starting from 2024-10-09 03:55:39.885582+0300
+I/flutter ( 9431): Pending notifs count for a week: 35
+W/le.prayer_time( 9431): Reducing the number of considered missed Gc histogram windows from 110 to 100

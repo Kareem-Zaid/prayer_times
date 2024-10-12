@@ -36,7 +36,6 @@ class _PickerScreenState extends State<PickerScreen> {
         matches.add(item);
       }
     }
-    // debugPrint(matches.toString());
     return matches;
   }
 
@@ -50,34 +49,41 @@ class _PickerScreenState extends State<PickerScreen> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Center(child: Text('اختر ${widget.iLabel}')),
-      content: SizedBox(
-        height: MediaQuery.of(context).size.height * .7,
-        width: MediaQuery.of(context).size.width * .7,
-        child: Column(
-          children: [
-            TextField(
-              decoration:
-                  InputDecoration(labelText: 'أدخل اسم ${widget.iLabel}'),
-              onChanged: (v) {
-                setState(() => filteredItems = searchLogic(v, widget.items));
-              },
+      content: LayoutBuilder(builder: (context, constraints) {
+        return SingleChildScrollView(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * .7,
+            width: MediaQuery.of(context).size.width * .7,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  decoration:
+                      InputDecoration(labelText: 'أدخل اسم ${widget.iLabel}'),
+                  onChanged: (v) {
+                    setState(
+                        () => filteredItems = searchLogic(v, widget.items));
+                  },
+                ),
+                Flexible(
+                  child: ListView.builder(
+                    itemCount: filteredItems.length,
+                    // shrinkWrap: true,
+                    // physics: const ClampingScrollPhysics(),
+                    itemBuilder: (c, i) {
+                      return ListTile(
+                        title: Text(filteredItems[i].name),
+                        onTap: () =>
+                            Navigator.of(context).pop(filteredItems[i]),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: filteredItems.length,
-                // shrinkWrap: true,
-                // physics: const ClampingScrollPhysics(),
-                itemBuilder: (c, i) {
-                  return ListTile(
-                    title: Text(filteredItems[i].name),
-                    onTap: () => Navigator.of(context).pop(filteredItems[i]),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      }),
     );
   }
 }

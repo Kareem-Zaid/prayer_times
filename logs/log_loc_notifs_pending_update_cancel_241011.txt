@@ -1,0 +1,189 @@
+Running Gradle task 'assembleDebug'...                             ٤٣٫٤s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...          ١٩٫١s
+D/FlutterGeolocator(10652): Attaching Geolocator to activity
+D/FlutterGeolocator(10652): Creating service.
+D/FlutterGeolocator(10652): Binding to location service.
+D/FlutterGeolocator(10652): Geolocator foreground service connected
+D/FlutterGeolocator(10652): Initializing Geolocator services
+D/FlutterGeolocator(10652): Flutter engine connected. Connected engine count 1
+Syncing files to device Redmi 8...                                 ٦٧٣ms
+
+Flutter run key commands.
+r Hot reload.
+R Hot restart.
+h List all available interactive commands.
+d Detach (terminate "flutter run" but leave application running).
+c Clear the screen
+q Quit (terminate the application on the device).
+
+A Dart VM Service on Redmi 8 is available at: http://127.0.0.1:51489/_7Lb3MwzFow=/
+I/flutter (10652): determinePosition started
+I/flutter (10652): passApiArgs in HomeScreen: null, null, null
+W/le.prayer_time(10652): Accessing hidden field Ljava/util/Collections$SynchronizedCollection;->mutex:Ljava/lang/Object; (greylist-max-o, reflection, denied)
+W/le.prayer_time(10652): Accessing hidden field Ljava/util/Collections$SynchronizedCollection;->c:Ljava/util/Collection; (greylist, reflection, allowed)
+W/le.prayer_time(10652): Accessing hidden method Ljava/util/Collections$SynchronizedSet;-><init>(Ljava/util/Set;Ljava/lang/Object;)V (greylist-max-o, reflection, denied)     
+W/le.prayer_time(10652): Accessing hidden method Ljava/util/Collections$SynchronizedCollection;-><init>(Ljava/util/Collection;Ljava/lang/Object;)V (greylist-max-o, reflection, denied)
+I/le.prayer_time(10652): ProcessProfilingInfo new_methods=1888 is saved saved_to_disk=1 resolve_classes_delay=8000
+D/ProfileInstaller(10652): Installing profile for com.example.prayer_times
+W/Gralloc3(10652): mapper 3.x is not supported
+The Flutter DevTools debugger and profiler on Redmi 8 is available at: http://127.0.0.1:9102?uri=http://127.0.0.1:51489/_7Lb3MwzFow=/
+I/Timeline(10652): Timeline: Activity_launch_request time:797164651
+I/flutter (10652): Error getting location: Location services are still disabled after opening settings.
+I/flutter (10652): initLocation ended
+I/flutter (10652): passApiArgs in HomeScreen: null, null, null
+I/flutter (10652): Rescheduled notification futures count: 0
+I/flutter (10652): Done scheduling notifications for a week starting from 2024-10-11 05:46:49.535859+0300
+I/flutter (10652): Pending notifs count for a week: 35
+I/flutter (10652): determinePosition started
+I/Timeline(10652): Timeline: Activity_launch_request time:797218608
+I/flutter (10652): Error getting location: Location services are still disabled after opening settings.
+I/flutter (10652): initLocation ended
+I/flutter (10652): passApiArgs in HomeScreen: null, null, null
+I/flutter (10652): Rescheduled notification futures count: 0
+I/flutter (10652): Done scheduling notifications for a week starting from 2024-10-11 05:47:43.301113+0300
+I/flutter (10652): Pending notifs count for a week: 35
+I/flutter (10652): determinePosition started
+I/Timeline(10652): Timeline: Activity_launch_request time:797238902
+I/flutter (10652): Error getting location: Location services are still disabled after opening settings.
+I/flutter (10652): initLocation ended
+I/flutter (10652): passApiArgs in HomeScreen: null, null, null
+I/flutter (10652): determinePosition started
+I/flutter (10652): determinePosition ended
+I/flutter (10652): initLocation ended
+I/flutter (10652): passApiArgs in HomeScreen: null, null, null
+I/flutter (10652): Rescheduled notification futures count: 0
+I/flutter (10652): Done scheduling notifications for a week starting from 2024-10-11 05:48:03.566780+0300
+I/flutter (10652): Pending notifs count for a week: 35
+I/flutter (10652): Rescheduled notification futures count: 0
+I/flutter (10652): Done scheduling notifications for a week starting from 2024-10-11 05:48:12.119902+0300
+I/flutter (10652): Pending notifs count for a week: 35
+I/flutter (10652): Picked item after pop: آيسلندا
+I/flutter (10652): Picked item after pop: Capital Region
+I/flutter (10652): Settings changed..
+I/flutter (10652):                 City: true | Method: false
+I/flutter (10652): passApiArgs in HomeScreen: آيسلندا, Capital Region, null
+I/flutter (10652): Rescheduled notification futures count: 0
+I/flutter (10652): Done scheduling notifications for a week starting from 2024-10-11 05:48:37.960925+0300
+I/flutter (10652): Pending notifs count for a week: 35
+W/BpBinder(10652): Slow Binder: BpBinder transact took 278ms, interface=android.ui.ISurfaceComposer, code=8 oneway=false
+W/Looper  (10652): Slow Looper main: doFrame is 333ms late because of 2 msg, msg 1 took 332ms (seq=789 late=1ms h=android.app.ActivityThread$H w=137)
+
+Performing hot restart...                                               
+Restarted application in ٣٬٤٩٢ms.
+I/flutter (10652): determinePosition started
+I/flutter (10652): passApiArgs in HomeScreen: null, null, null
+I/flutter (10652): determinePosition ended
+I/flutter (10652): initLocation ended
+I/flutter (10652): passApiArgs in HomeScreen: null, null, null
+I/flutter (10652): Rescheduled notification futures count: 0
+I/flutter (10652): Done scheduling notifications for a week starting from 2024-10-11 05:52:24.862731+0300
+I/flutter (10652): Pending notifs count for a week: 35
+I/flutter (10652): Notifications canceled
+I/flutter (10652): Pending notifs count after canceling: 0
+I/flutter (10652): passApiArgs in HomeScreen: null, null, null
+I/flutter (10652): Country: null | City: null
+I/le.prayer_time(10652): Background young concurrent copying GC freed 69787(3442KB) AllocSpace objects, 2(104KB) LOS objects, 60% free, 2568KB/6449KB, paused 7.530ms total 52.331ms
+W/le.prayer_time(10652): Accessing hidden method Lsun/misc/Unsafe;->compareAndSwapInt(Ljava/lang/Object;JII)Z (greylist, linking, allowed)
+W/le.prayer_time(10652): Accessing hidden method Lsun/misc/Unsafe;->compareAndSwapLong(Ljava/lang/Object;JJJ)Z (greylist, linking, allowed)
+I/flutter (10652): Country: null | City: null
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 1 line
+I/flutter (10652): Country: null | City: null
+I/flutter (10652): Country: null | City: null
+I/flutter (10652): Country: null | City: null
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 3 lines
+I/flutter (10652): Country: null | City: null
+I/flutter (10652): Country: null | City: null
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 3 lines
+I/flutter (10652): Country: null | City: null
+I/flutter (10652): Country: null | City: null
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 3 lines
+I/flutter (10652): Country: null | City: null
+I/flutter (10652): Country: null | City: null
+I/flutter (10652): Country: null | City: null
+I/flutter (10652): Country: null | City: null
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 1 line
+I/flutter (10652): Country: null | City: null
+I/flutter (10652): Country: null | City: null
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 3 lines
+I/flutter (10652): Country: null | City: null
+I/flutter (10652): Country: null | City: null
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 3 lines
+I/flutter (10652): Country: null | City: null
+I/flutter (10652): Rescheduled notification futures count: 35
+I/flutter (10652): Done scheduling notifications for a week starting from 2024-10-11 05:52:40.707774+0300
+I/flutter (10652): Pending notifs count for a week: 35
+I/flutter (10652): Picked item after pop: آيسلندا
+I/flutter (10652): Picked item after pop: Capital Region
+I/flutter (10652): Settings changed..
+I/flutter (10652):                 City: true | Method: false
+I/flutter (10652): Notifications canceled
+I/flutter (10652): Pending notifs count after canceling: 0
+I/flutter (10652): passApiArgs in HomeScreen: آيسلندا, Capital Region, null
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 3 lines
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 3 lines
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 3 lines
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 1 line
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 2 lines
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Rescheduled notification futures count: 35
+I/flutter (10652): Done scheduling notifications for a week starting from 2024-10-11 05:53:05.100728+0300
+I/flutter (10652): Pending notifs count for a week: 35
+I/flutter (10652): Notifications canceled
+I/flutter (10652): Pending notifs count after canceling: 0
+I/flutter (10652): passApiArgs in HomeScreen: آيسلندا, Capital Region, null
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 3 lines
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 2 lines
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 3 lines
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 3 lines
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 1 line
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/chatty  (10652): uid=10700(com.example.prayer_times) 1.ui identical 3 lines
+I/flutter (10652): Country: آيسلندا | City: Capital Region
+I/flutter (10652): Rescheduled notification futures count: 35
+I/flutter (10652): Done scheduling notifications for a week starting from 2024-10-11 05:53:40.252414+0300
+I/flutter (10652): Pending notifs count for a week: 35
+I/flutter (10652): passApiArgs in HomeScreen: آيسلندا, Capital Region, null
+I/flutter (10652): passApiArgs in HomeScreen: آيسلندا, Capital Region, null
+I/flutter (10652): passApiArgs in HomeScreen: آيسلندا, Capital Region, null
+I/flutter (10652): passApiArgs in HomeScreen: آيسلندا, Capital Region, null

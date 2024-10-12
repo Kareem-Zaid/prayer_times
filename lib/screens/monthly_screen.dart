@@ -16,31 +16,42 @@ class MonthlyScreen extends StatefulWidget {
 }
 
 class MonthlyScreenState extends State<MonthlyScreen> {
-  static late Future<PrayerMonth> future;
-  DateTime _selectedDay = DateTime.now();
-  int _selectedIndex = DateTime.now().day - 1;
-  final ItemScrollController itemScrollController = ItemScrollController();
-  final ScrollOffsetController scrollOffsetController =
+  static late Future<PrayerMonth> _future;
+  static DateTime _selectedDay = DateTime.now();
+  static int _selectedIndex = DateTime.now().day - 1;
+  static final ItemScrollController _itemScrollController =
+      ItemScrollController();
+  final ScrollOffsetController _scrollOffsetController =
       ScrollOffsetController();
-  final ItemPositionsListener itemPositionsListener =
+  final ItemPositionsListener _itemPositionsListener =
       ItemPositionsListener.create();
-  final ScrollOffsetListener scrollOffsetListener =
+  final ScrollOffsetListener _scrollOffsetListener =
       ScrollOffsetListener.create();
 
-  Future<void> assignPrayerMonth() async {
-    future =
-        ApiService.getPrayerMonth(date: _selectedDay, apiPars: widget.settings);
-    await future;
+  static Future<void> assignPrayerMonth(UserSettings settings) async {
+    try {
+      _future =
+          ApiService.getPrayerMonth(date: _selectedDay, apiPars: settings);
+      await _future; // Delays "_scrollToItem", so that scroll occurs normally
+    } on Exception catch (e) {
+      debugPrint('getPrayerMonth caught error: $e');
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ScaffoldMessenger.of(settings.context).showSnackBar(const SnackBar(
+            content: Text('''لم يتم تحميل بيانات مواقيت الصلاة الشهرية..
+يرجى التأكد من الاتصال بالإنترنت وتحديث الصفحة''')));
+      });
+    }
+// Check why this and place a comment to remember
 
     _scrollToItem(_selectedIndex);
   }
 
-  void _scrollToItem(int index) {
+  static void _scrollToItem(int index) {
     // 'WidgetsBinding.instance.addPostFrameCallback' evades exception that occurs due to calling '_scrollToItem' method before 'ScrollablePositionedList' widget is fully built and ready to be scrolled
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!itemScrollController.isAttached) return;
+      if (!_itemScrollController.isAttached) return;
 
-      itemScrollController.scrollTo(
+      _itemScrollController.scrollTo(
         index: index,
         duration: const Duration(milliseconds: 1500),
         curve: Curves.easeInOutCubic,
@@ -49,30 +60,21 @@ class MonthlyScreenState extends State<MonthlyScreen> {
   }
 
   @override
-  void didUpdateWidget(covariant MonthlyScreen oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.settings.city != oldWidget.settings.city ||
-        widget.settings.country != oldWidget.settings.country ||
-        widget.settings.method != oldWidget.settings.method) {
-      assignPrayerMonth();
-    }
-  }
-
-  @override
   void initState() {
     super.initState();
-    assignPrayerMonth();
+    assignPrayerMonth(widget.settings);
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: future,
+      future: _future,
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator()); // Loading
         } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}')); // Error
+          return const Center(child: Text('''خطأ في تحميل البيانات...
+يرجى التأكد من الاتصال بالإنترنت''', textAlign: TextAlign.center)); // Error
         } else if (!snapshot.hasData) {
           return const Center(child: Text('No data received.')); // No data
         } else if (snapshot.hasData) {
@@ -107,7 +109,7 @@ class MonthlyScreenState extends State<MonthlyScreen> {
                         if (sameMonth && sameYear) {
                           _scrollToItem(_selectedIndex);
                         } else {
-                          assignPrayerMonth();
+                          assignPrayerMonth(widget.settings);
                         }
                       }
                     },
@@ -123,10 +125,10 @@ class MonthlyScreenState extends State<MonthlyScreen> {
               Expanded(
                 child: ScrollablePositionedList.builder(
                   // shrinkWrap: true, // 'Expanded' overrides its functionality
-                  itemScrollController: itemScrollController,
-                  scrollOffsetController: scrollOffsetController,
-                  itemPositionsListener: itemPositionsListener,
-                  scrollOffsetListener: scrollOffsetListener,
+                  itemScrollController: _itemScrollController,
+                  scrollOffsetController: _scrollOffsetController,
+                  itemPositionsListener: _itemPositionsListener,
+                  scrollOffsetListener: _scrollOffsetListener,
                   itemCount: prayerMonth.length,
                   itemBuilder: (c, i) {
                     final prayerList = prayerMonth[i].prayers.prayerList;

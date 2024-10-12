@@ -45,7 +45,6 @@ class NextPrayerService {
     if (!prayerAssigned && (now.isAfter(ishaTime) || now.isBefore(fajrTime))) {
       nextPrayer = fivePrayers.first;
     }
-    // debugPrint('Next prayer: ${nextPrayer?.name}');
     return nextPrayer!;
   }
 
